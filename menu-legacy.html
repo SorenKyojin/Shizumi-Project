@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=PT Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <script src="menu.js"></script>
+    <script src="popup.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Menu - Shizumi</title>
+</head>
+<!-- HEADER -->
+<!-- Ce header n'est pas visible sur la page de connexion -->
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <div class="menutooltip">
+                <img src="img/logo.png" alt="Shizumi" class="logo-small" onclick="history.back()">
+                <span class="menutooltiptext">Cliquez pour fermer le menu</span>
+            </div>
+            <div id="menu">
+                <nav>
+                    <ul class="menu-list">
+                        <li><a href="lottery.html" class="menu-button"><img src="img/lottery-icon.png" height="60px" width="60px">Loterie</a></li>
+                        <li><a href="shop.html" class="menu-button"><img src="img/shop-icon.png" height="60px" width="60px">Boutique</a></li>
+                        <li><a href="collection.html" class="menu-button"><img src="img/hotel-icon.png" height="60px" width="60px">Collection</a></li>
+                        <li><a href="#" class="menu-button"><img src="img/garden-icon.png" height="60px" width="60px">Jardin</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Il va falloir rendre le <p>  ci-dessous invisible lorsque l'on clique sur le logo de Shizumi. -->
+            <!-- <p class="page-desc">Description de la page. Ce texte changera en fonction de la page affichée, grâce au JavaScript. Si vous voyez ce texte, le JavaScript ne fonctionne pas.</p> -->
+        </div>
+        <!-- Quand on clique sur le logo, on pourra afficher cette <div> qui sera centrée sur le header. -->
+        <div class="header-right">
+            <div>
+                <a href="#" class="contact-menu"><img src="img/contact.png"></a>
+            </div>
+        </div>
+    </header>
+    <div class="box dev-window">
+        <p>Cette fonctionnalité est expérimentale. Celle-ci est sujette à modifications, et ne représente qu'un prototype de ce qui sortira au final.</p>
+        <a href="menu-mobile.html">Accéder au menu optimisé pour mobile</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "playername": "Eric",
+    "playerwallet": 100,
+    "playercollection": [],
+    "playerwishes": [],
+    "playergarden": [
+        {
+            "plantid": 1,
+            "plantlevel": 1
+        },
+        {
+            "plantid": 2,
+            "plantlevel": 3
+        }
+    ],
+    "lotterylvl": 1,
+    "collectionlvl": 1,
+    "shoplvl": 1,
+    "gardenlvl": 1,
+    "playerinventory": [],
+    "rolls": 10,
+    "claims": 1
+}

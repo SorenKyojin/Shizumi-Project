@@ -1,0 +1,10 @@
+{
+    "name": "Jotaro Kujo",
+    "gender": 1,
+    "serie": "Honkai Impact 3rd",
+    "type": "game",
+    "rarity": 5,
+    "value": 403,
+    "description": "",
+    "images": ["jotaro.png"]
+}

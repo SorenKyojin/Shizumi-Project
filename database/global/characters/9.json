@@ -1,0 +1,10 @@
+{
+    "name": "Lady Alyx",
+    "gender": 2,
+    "serie": "Shizumi",
+    "type": "game",
+    "rarity": 2,
+    "value": 98,
+    "description": "[Exclusivité Shizumi] Alyx est une fille d'une riche famille, connue à travers le monde. Mais personne ne connaît ses sombres secrets...",
+    "images": ["lady_alyx.png"]
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="popup.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=PT Sans' rel='stylesheet'>
+    <title>Contact - Shizumi</title>
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <div class="menutooltip">
+                <a href="menu.html"><img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-small"></a>
+                <span class="menutooltiptext">Cliquez pour ouvrir le menu</span>
+            </div>
+            <div>
+                <p class="page-desc">
+                    Ajoutez un personnage. Tous les champs sont obligatoires.
+                </p>
+                <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div>
+                <p class="page-name">Ajout de personnage</p>
+            </div>
+            <!-- Icône de la page -->
+            <img src="img/characters-icon.png" width="80px" height="80px">
+        </div>
+    </header>
+    <main class="character-creation">
+        <form class="box manager-box">
+            <h1>Ajouter un personnage</h1>
+            <div class="manager-zone">
+                <div class="manager-left">
+                    <label for="charname">Nom</label>
+                    <input type="text" name="charname" id="addchar-name" class="field" required>
+                    <label for="charserie">Série</label>
+                    <input type="text" name="charserie" id="addchar-serie" class="field" required>
+                    <!-- <label for="charrarity">Rareté</label> PLACEHOLDER
+                    <select name="charrarity" id="addchar-rarity" class="field" required>
+                        <option value="1">1 étoile (Commun)</option>
+                        <option value="1">2 étoiles (Inhabituel)</option>
+                        <option value="1">3 étoiles (Rare)</option>
+                        <option value="1">4 étoiles (Très rare)</option>
+                        <option value="1">5 étoiles (Légendaire)</option>
+                    </select> -->
+                    <label for="chardesc">Description</label>
+                    <textarea name="chardesc" id="addchar-desc" class="field big-field" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="manager-right">
+                    <label for="charimg">URL d'image</label>
+                    <input type="text" name="charimg" id="addchar-image" class="field" required>
+                    <!-- Aperçu de l'image de l'URL -->
+                </div>
+                
+            </div>
+            <input type="submit" value="Ajouter le personnage" class="submit">
+        </form>
+    </main>
+</body>
+</html>

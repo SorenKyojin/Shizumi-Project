@@ -1,0 +1,56 @@
+Une partie développeur va être crée pour l'écriture des fichiers JSON et leur gestion.
+Cette partie développeur va permettre de gérer le site dans sa quasi intégralité.
+
+* JSON:
+name = Nom du perso
+gender = Sexe du personnage. 0 = Indéfini (Compte pour homme et femme) 1 = Homme et 2 = femme
+serie = Série duquel le personnage est tiré.
+type = Type d'oeuvre pour la série. Voici les valeurs possible:
+    game = Jeu-Vidéo
+    anime = Anime
+    manga = Manga
+    manhwa = Manhwa (Manga coréen)
+    movie = Films
+    serie = Série (Télévisée, Série Netflix...)
+    animanga = Anime et manga
+    anigame = Anime et JV
+    mangame = Anime et manga
+rarity = Rareté. Prend une valeur entre 1 et 5, resprésentant la rareté en étoiles.
+value = Pour le moment, on met un chiffre placeholder. Mais celui-ci sera remplacé par une variable qui calculera la valeur en
+Okane du personnage, en fonction de sa popularité dans sa série, et en général.
+description = Apparait dans le profil complet du perso. Petite description donnée pour le personnage, qu'on tirera souvent des
+wikis.
+images = //On mettra ici des images hébergées sur Imgur, à la manière de Mudae.// On mettra le lien vers le fichier d'image dans la base de donnée.
+
+? Comment écrire les fichiers .json pour les personnages ?
+    Il y aura 2 moyens:
+
+Le + simple à mettre en place:
+Créer les fichiers manuellement puis reprendre leur structure en changeant les valeurs pour le personnage désiré.
+
++ Compliqué mais + rapide pour l'ajout:
+Dans l'espace développeur, ajouter la possibilité d'ajouter un personnage. Le site va prendre les valeurs donnés et les écrire
+dans un fichier JSON.
+
+* UTILISATION API
+
+//AnimeChan ?
+//Pour mettre des citations aléatoire provenant d'animes dans l'écran de menu
+
+//Imgur (Impossible)
+//On utilise pas encore l'HTTPS, qui est exigé par Imgur.
+On utilisera l'API Shizumi API
+
+Dans le JSON, rarity et value sont pour le moment des placeholders.
+
+
+Pour les codes côté serveur:
+On les mettra tous sur des JS séparés, qui seront exécutés par Node.js et déclenché par le client selon la condition.
+Par exemple, pour le roll, la fonction roll() va appeler une fonction <insérer nom de fonction server side>.js
+
+* COMPTES:
+
+On utilise pour le moment la méthode mysqli pour la connexion à la base de donnée.
+Cette méthode est moins sécurisée mais fonctionne.
+
+! En utilisant la méthode de connexion PDO, tout le code est à réécrire, et le nouveau code ne fonctionne pas.

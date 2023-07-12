@@ -1,0 +1,10 @@
+{
+    "name": "Ayane",
+    "gender": 2,
+    "serie": "Senran Kagura",
+    "type": "game",
+    "rarity": 3,
+    "value": 204,
+    "description": "Version Senran Kagura de Ayane, qui est à l'origine un personnage de Dead or Alive.",
+    "images": ["ayane_sk.png"]
+}

@@ -1,0 +1,46 @@
+Bien sûr ! Voici une fonction en JavaScript qui vous permettra d'écrire un fichier JSON avec les données des personnages que vous avez mentionnées :
+
+```javascript
+
+const fs = require('fs');
+
+function ecrireFichierJSON(nomFichier, donnees) {
+  const contenuJSON = JSON.stringify(donnees, null, 2);
+
+  fs.writeFile(nomFichier, contenuJSON, 'utf8', (erreur) => {
+    if (erreur) {
+      console.error('Erreur lors de l\'écriture du fichier JSON :', erreur);
+    } else {
+      console.log('Le fichier JSON a été créé avec succès !');
+    }
+  });
+}
+
+// Exemple d'utilisation
+const personnages = [
+  {
+    nom: 'Personnage 1',
+    serie: 'Série 1',
+    rarete: 3,
+    description: 'Description du personnage 1',
+    photo: 'https://example.com/photo1.jpg'
+  },
+  {
+    nom: 'Personnage 2',
+    serie: 'Série 2',
+    rarete: 5,
+    description: 'Description du personnage 2',
+    photo: 'https://example.com/photo2.jpg'
+  }
+];
+
+const nomFichier = 'donnees_personnages.json';
+ecrireFichierJSON(nomFichier, personnages);
+
+```
+
+Dans cet exemple, nous utilisons le module `fs` (file system) de Node.js pour écrire le fichier JSON. Assurez-vous d'avoir Node.js installé sur votre machine pour exécuter ce code.
+
+La fonction `ecrireFichierJSON` prend en paramètres le nom du fichier JSON à créer et les données des personnages sous forme d'un tableau d'objets. Elle convertit ensuite ces données en chaîne JSON à l'aide de `JSON.stringify`, puis écrit cette chaîne dans le fichier spécifié à l'aide de `fs.writeFile`.
+
+Assurez-vous d'adapter les données des personnages à votre besoin et de fournir un nom de fichier approprié. Une fois que vous exécutez le code, un fichier JSON sera créé avec les données des personnages dans le même répertoire que votre script JavaScript.

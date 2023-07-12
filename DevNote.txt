@@ -1,0 +1,27 @@
+Shizumi va fonctionner des plusieurs manières pour le BACK-END.
+
+On utilisera MySQL et du PHP pour l'enregistrement de compte.
+
+Comme dans la majorité des jeux de type Gacha, le joueur au un identifiant unique, appelé
+User Identifiant/User Unique Identifiant (UID ou UUID) qui permettra de stocker les personnages
+de la collection.
+
+Pour stocker les personnages disponibles, on utilisera des fichiers JSON qui seront écrit et lu
+par Node.JS, que je connais déjà un peu.
+
+On utilisera la même méthode pour stocker les personnages dans la collection de l'utilisateur,
+lié à son UID.
+
+Pour la partie front-end, PAS DE BOOTSTRAP.
+
+La raison est que le framework est inadapté pour le site, il y aurait trop de choses à modifier
+et de plus il faut résoudre les bugs générés lors de son installation.
+La partie front-end se fera donc à la dur, à l'ancienne, avec du PUR CSS et du flexbox.
+
+Pour le mode mobile, il faut rendre le footer2 fixe sur le bas pour pouvoir toujour voir son porte-monnaie.
+
+Drop shadow images:
+filter: drop-shadow(0px 10px 28px rgba(0, 0, 0, 0.50));
+
+Drop shadow:
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
