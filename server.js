@@ -31,7 +31,7 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données établie !');
 });
-function playerData() {
+function getPlayerData() {
   connection.query('SELECT id FROM users WHERE email = ' + userEmail, (err, results) => {
     if (err) {
       console.error('Erreur lors de l\'exécution de la requête :', err);
@@ -48,7 +48,20 @@ function playerData() {
   var player = JSON.parse(playerData);
 }
 
-connection.end();
+function getPlayerUUID() {
+  connection.query('SELECT id FROM users WHERE email = ' + userEmail, (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'exécution de la requête :', err);
+      return;
+    }
+    
+    if (results.length > 0) {
+      const userId = results[0].id;
+      console.log('Identifiant de l\'utilisateur actuel :', userId);
+      // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
+    }
+  });
+}
 
 function selectChar() {
     fs.readdir(baseCharacterPath, (err, charFiles) => {
