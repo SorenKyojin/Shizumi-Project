@@ -42,6 +42,8 @@ connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, result
   }
 });
 
+userEmail;
+userId;
 
 function playerData() {
   var playerData = fs.readFileSync('database/players/' + userId + '.json');
