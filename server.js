@@ -13,6 +13,9 @@ app.get('/shutdown', (req, res) => {
     });
   });
 
+var userEmail;
+var userId;
+
 const fs = require('fs');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -28,24 +31,19 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données établie !');
 });
-
-connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, results) => {
-  if (err) {
-    console.error('Erreur lors de l\'exécution de la requête :', err);
-    return;
-  }
-  
-  if (results.length > 0) {
-    const userId = results[0].id;
-    console.log('Identifiant de l\'utilisateur actuel :', userId);
-    // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
-  }
-});
-
-var userEmail;
-var userId;
-
 function playerData() {
+  connection.query('SELECT id FROM users WHERE email = ' + userEmail, (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'exécution de la requête :', err);
+      return;
+    }
+    
+    if (results.length > 0) {
+      const userId = results[0].id;
+      console.log('Identifiant de l\'utilisateur actuel :', userId);
+      // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
+    }
+  });
   var playerData = fs.readFileSync('database/players/' + userId + '.json');
   var player = JSON.parse(playerData);
   rolls = player.rolls;
