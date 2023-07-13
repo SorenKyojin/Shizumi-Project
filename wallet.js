@@ -11,7 +11,7 @@ function getPlayerWallet() {
       console.log('Une erreur s\'est produite : ' + error.message);
     });
 }
-if (!OkaneWallet) {
+if (OkaneWallet == null) {
     OkaneWallet = 0;
 } else {
     OkaneWallet = playerdata.playerwallet;
