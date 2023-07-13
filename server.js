@@ -46,7 +46,6 @@ function playerData() {
   });
   var playerData = fs.readFileSync('database/players/' + userId + '.json');
   var player = JSON.parse(playerData);
-  rolls = player.rolls;
 }
 
 connection.end();
