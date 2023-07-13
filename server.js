@@ -2,12 +2,6 @@ const express = require('express'); // Importe le module Express
 
 const app = express(); // Crée une instance d'application Express
 
-<<<<<<< HEAD
-=======
-var userEmail;
-var userId;
-
->>>>>>> f0a3da6 (Shizumi Project)
 app.listen(3000, () => { console.log('Serveur démarré sur le port 3000'); });
 
 app.get('/shutdown', (req, res) => {
