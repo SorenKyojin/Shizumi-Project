@@ -12,7 +12,6 @@ app.get('/shutdown', (req, res) => {
       process.exit(0);
     });
   });
-
 var userEmail;
 var userId;
 
@@ -123,3 +122,12 @@ function getPlayerWallet() {
     console.log('Une erreur s\'est produite : ' + error.message);
   });
 }
+app.get('/getPlayerWallet', function(req, res) {
+  getPlayerWallet();
+  // Une fois que getPlayerWallet() a terminé son exécution et que la variable OkaneWallet a été mise à jour, vous pouvez envoyer la réponse contenant la valeur d'OkaneWallet
+  res.json({ OkaneWallet: OkaneWallet });
+});
+app.get('/selectChar', function(req, res) {
+  selectChar();
+  res.json({ OkaneWallet: OkaneWallet });
+});
