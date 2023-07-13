@@ -1,0 +1,11 @@
+<form class="change-profile-picture" action="database/pfp_pic_upload.php">
+    <p>Importez une image de 300x300 pixels minimum. La taille recommandée est de 500x500 pixels.</p>
+    <label class="import-profile-pic">
+        <p style="margin: 10px 10px;">Importer</p>
+        <input type="file" id="profile-pic-input" name="profile-pic-file" accept="image/png, image/jpeg, image/gif" class="hide-input-file">
+    </label>
+    <input type="submit" class="update-profile" name="update-profile" value="Mettre à jour"></input>
+</form>
+<form action="">
+    <input type="submit" name="reset-profile-pic" id="reset-profile-pic" value="Réinitialiser"></input>
+</form>
