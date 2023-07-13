@@ -10,4 +10,4 @@ fetch('/getPlayerWallet') // Assurez-vous d'utiliser le bon chemin d'accès corr
     console.log('Une erreur s\'est produite : ' + error.message);
   });
 
-document.getElementById("okane-wallet-value").innerHTML = okaneWalletValue;
+document.getElementById("okane-wallet-value").innerHTML = okaneWalletValue; 
