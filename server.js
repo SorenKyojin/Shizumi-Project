@@ -49,9 +49,10 @@ connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, result
 });
 
 
-
-const playerData = fs.readFileSync('database/players/' + userId + '.json');
-const player = JSON.parse(playerData);
+function playerData() {
+  var playerData = fs.readFileSync('database/players/' + userId + '.json');
+  var player = JSON.parse(playerData);
+}
 
 // Pour obtenir la valeur de "rolls" du joueur
 const rolls = player.rolls;
