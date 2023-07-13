@@ -11,10 +11,10 @@ function getPlayerWallet() {
       console.log('Une erreur s\'est produite : ' + error.message);
     });
 }
+OkaneWallet = playerdata.playerwallet;
+
 if (OkaneWallet == null) {
     OkaneWallet = 0;
-} else {
-    OkaneWallet = playerdata.playerwallet;
 }
 // 
 document.getElementById("okane-wallet-value").innerHTML = OkaneWallet;
