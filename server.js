@@ -42,17 +42,14 @@ connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, result
   }
 });
 
-userEmail;
-userId;
+var userEmail;
+var userId;
 
 function playerData() {
   var playerData = fs.readFileSync('database/players/' + userId + '.json');
   var player = JSON.parse(playerData);
+  rolls = player.rolls;
 }
-
-// Pour obtenir la valeur de "rolls" du joueur
-const rolls = player.rolls;
-
 
 connection.end();
 
