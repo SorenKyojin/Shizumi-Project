@@ -113,13 +113,13 @@ function getPlayerWallet() {
   })
   .then(function(playerdata) {
     console.log(playerdata.playerwallet);
+    if (OkaneWallet == null) {
+      OkaneWallet = 0;
+    } else {
     OkaneWallet = playerdata.playerwallet;
+    }
   })
   .catch(function(error) {
     console.log('Une erreur s\'est produite : ' + error.message);
   });
-}
-
-if (OkaneWallet == null) {
-  OkaneWallet = 0;
 }
