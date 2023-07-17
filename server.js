@@ -8,7 +8,7 @@ app.get('/shutdown', (req, res) => {
     // Logique d'arrêt du serveur
     console.log('Arrêt du serveur...');
     server.close(() => {
-      console.log('Serveur arrêté.');
+      console.log('Serveur arrêté. Code de sortie 0');
       process.exit(0);
     });
   });
@@ -87,7 +87,6 @@ function selectChar() {
                 characterDescText.textContent = data.description;
                 characterValueLabel.textContent = data.value;
                 characterMainImage.src = "./img/" + data.images[0];
-
             })
             .catch(function(error) {
                 console.log('Une erreur s\'est produite : ' + error.message);
