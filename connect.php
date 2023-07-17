@@ -29,17 +29,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Connexion réussie, enregistrement de l'utilisateur dans la session
             $_SESSION['user'] = $user;
             $_SESSION['email'] = $hashedEmail;
+            // Récupérez la valeur de l'email depuis $_SESSION["email"]
+            $reqemail = $_SESSION["email"];
 
-            // Construit un tableau associatif contenant les informations
-            $userInfo = array(
-              'email' => $hashedEmail
+            // Envoyez la valeur de l'email vers le serveur Node.js
+            // Assurez-vous d'adapter l'URL à votre serveur Node.js
+            $url = 'http://localhost/';
+            $data = array('email' => $reqemail);
+
+            $options = array(
+              'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => http_build_query($data)
+              )
             );
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
 
-            // Définit l'en-tête de la réponse comme JSON
-            header('Content-Type: application/json');
-
-            // Convertit le tableau en format JSON et renvoie la réponse
-            echo json_encode($userInfo);
             header('Location: menu.php'); // Redirection vers la page de tableau de bord après connexion
             exit();
         } else {
