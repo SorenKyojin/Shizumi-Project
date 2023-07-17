@@ -12,8 +12,6 @@ app.get('/shutdown', (req, res) => {
       process.exit(0);
     });
   });
-var userEmail;
-var userId;
 
 const fs = require('fs');
 const mysql = require('mysql');
@@ -30,37 +28,30 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données établie !');
 });
-function getPlayerData() {
-  connection.query('SELECT id FROM users WHERE email = ' + userEmail, (err, results) => {
-    if (err) {
-      console.error('Erreur lors de l\'exécution de la requête :', err);
-      return;
-    }
-    
-    if (results.length > 0) {
-      const userId = results[0].id;
-      console.log('Identifiant de l\'utilisateur actuel :', userId);
-      // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
-    }
-  });
-  var playerData = fs.readFileSync('database/players/' + userId + '.json');
-  var player = JSON.parse(playerData);
-}
 
-function getPlayerUUID() {
-  connection.query('SELECT id FROM users WHERE email = ' + userEmail, (err, results) => {
-    if (err) {
-      console.error('Erreur lors de l\'exécution de la requête :', err);
-      return;
-    }
-    
-    if (results.length > 0) {
-      const userId = results[0].id;
-      console.log('Identifiant de l\'utilisateur actuel :', userId);
-      // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
-    }
-  });
-}
+connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, results) => {
+  if (err) {
+    console.error('Erreur lors de l\'exécution de la requête :', err);
+    return;
+  }
+  
+  if (results.length > 0) {
+    const userId = results[0].id;
+    console.log('Identifiant de l\'utilisateur actuel :', userId);
+    // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
+  }
+});
+
+
+
+const playerData = fs.readFileSync('database/players/' + userId + '.json');
+const player = JSON.parse(playerData);
+
+// Pour obtenir la valeur de "rolls" du joueur
+const rolls = player.rolls;
+
+
+connection.end();
 
 function selectChar() {
     fs.readdir(baseCharacterPath, (err, charFiles) => {
@@ -102,31 +93,3 @@ function selectChar() {
             });
     });
 }
-
-function getPlayerWallet() {
-  getPlayerUUID();
-  fetch('database/players/' + userId +'.json')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(playerdata) {
-    console.log(playerdata.playerwallet);
-    if (OkaneWallet == null) {
-      OkaneWallet = 0;
-    } else {
-    OkaneWallet = playerdata.playerwallet;
-    }
-  })
-  .catch(function(error) {
-    console.log('Une erreur s\'est produite : ' + error.message);
-  });
-}
-app.get('/getPlayerWallet', function(req, res) {
-  getPlayerWallet();
-  // Une fois que getPlayerWallet() a terminé son exécution et que la variable OkaneWallet a été mise à jour, vous pouvez envoyer la réponse contenant la valeur d'OkaneWallet
-  res.json({ OkaneWallet: OkaneWallet });
-});
-app.get('/selectChar', function(req, res) {
-  selectChar();
-  res.json({ OkaneWallet: OkaneWallet });
-});
