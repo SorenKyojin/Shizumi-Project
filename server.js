@@ -13,6 +13,21 @@ app.get('/shutdown', (req, res) => {
     });
 });
 app.get('/getPlayerWallet', function(req, res) {
+  // ? Ici, on veut récupérer la valeur du porte-monnaie du joueur. D'abord, il faut trouver son UUID.
+  fetch('/database/players/')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    // Ici, "data" contient le nombre de fichiers JSON
+    console.log('Nombre de fichiers JSON:', data.nombreFichiers);
+  })
+  .catch(function(error) {
+    console.log('Une erreur s\'est produite :', error);
+  });
+
+
+
   getPlayerWallet();
   // Une fois que getPlayerWallet() a terminé son exécution et que la variable OkaneWallet a été mise à jour, vous pouvez envoyer la réponse contenant la valeur d'OkaneWallet
   res.json({ OkaneWallet: OkaneWallet });
