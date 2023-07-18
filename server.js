@@ -17,6 +17,17 @@ app.get('/getPlayerWallet', function(req, res) {
   // Une fois que getPlayerWallet() a terminé son exécution et que la variable OkaneWallet a été mise à jour, vous pouvez envoyer la réponse contenant la valeur d'OkaneWallet
   res.json({ OkaneWallet: OkaneWallet });
 });
+app.post('/getPlayerEmail', (req, res) => {
+  // Accédez à la valeur de l'email dans le corps de la requête
+  const email = req.body.email;
+
+  // Utilisez l'email pour vos traitements
+  // Par exemple, vous pouvez l'utiliser pour certaines requêtes
+  // vers votre base de données ou un service externe, etc.
+
+  // Répondez à la requête PHP avec une réponse appropriée
+  res.send('Email reçu avec succès !');
+});
 
 const fs = require('fs');
 const mysql = require('mysql');
