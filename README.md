@@ -54,3 +54,5 @@ Garden:
 - More difficult garden (A nerf, yes): You'll need to hydrate your plants. Not too much, and enough to keep them alive. If a plant die, it will leave the slot, and gives you 2 fertilizers.
   (3 for uncommon, 4 for Epic and 5 for legendary.)
 - Like or pass: Random character card will appear. Give it a like to support it to increasing rank or pass to next character. More the character have likes among the serie, rarer it will be.
+- Friend system: Add friends by searching with their username#UUID. We use the same method than Riot Game or Discord (before removing it) to indentify users.
+- Share system: Show your harem to your friends with a link. They could see all the characters you have, but they couldn't do anything like removing characters.
