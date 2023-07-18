@@ -38,13 +38,13 @@
             <h1>Contact</h1>
             <div class="contact-top">
                 <div class="contact-left">
-                    <label for="name">Nom</label>
+                    <label for="contact-name">Nom</label>
                     <input type="text" name="name" id="contact-name" class="field" required>
-                    <label for="first-name">Prénom</label>
+                    <label for="contact-first-name">Prénom</label>
                     <input type="text" name="first-name" id="contact-first-name" class="field">
-                    <label for="email">Email</label>
+                    <label for="contact-email">Email</label>
                     <input type="email" name="email" id="contact-email" class="field" required>
-                    <label for="reason">Motif</label>
+                    <label for="contact-reason">Motif</label>
                     <select id="contact-reason" name="reason" class="field">
                         <option value="suggest">Suggestion générale</option>
                         <option value="character-suggestion">Suggestion d'ajout de personnage</option>
@@ -54,7 +54,7 @@
                     </select>
                 </div>
                 <div class="contact-right">
-                    <label for="message">Message</label>
+                    <label for="contact-message">Message</label>
                     <textarea name="message" id="contact-message" cols="30" rows="10" placeholder="Ecrivez-ici" class="field" required></textarea>
                     <label>Pièces-Jointes</label>
                     <button class="contact-import-button">Importer</button>
