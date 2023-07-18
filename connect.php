@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Envoyez la valeur de l'email vers le serveur Node.js
             // Assurez-vous d'adapter l'URL à votre serveur Node.js
-            $url = 'http://localhost/';
+            $url = 'http://localhost/getPlayerEmail';
             $data = array('email' => $reqemail);
 
             $options = array(
