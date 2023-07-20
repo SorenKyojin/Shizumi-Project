@@ -34,7 +34,7 @@ app.get('/getPlayerWallet', function(req, res) {
 });
 app.post('/getPlayerEmail', (req, res) => {
   // Accédez à la valeur de l'email dans le corps de la requête
-  userEmail = req.body.email;
+  const email = req.body.email;
 
   // Utilisez l'email pour vos traitements
   // Par exemple, vous pouvez l'utiliser pour certaines requêtes
@@ -59,7 +59,8 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données établie !');
 });
-connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, results) => {
+function getUserId() {
+  connection.query('SELECT id FROM users WHERE email = ?', email, (err, results) => {
   if (err) {
     console.error('Erreur lors de l\'exécution de la requête :', err);
     return;
@@ -71,9 +72,7 @@ connection.query('SELECT id FROM users WHERE email = ?', userEmail, (err, result
     // Tu peux stocker userId dans une variable ou l'utiliser comme nécessaire.
   }
 });
-
-
-
+}
 const playerData = fs.readFileSync('database/players/' + userId + '.json');
 const player = JSON.parse(playerData);
 
