@@ -34,7 +34,7 @@ app.get('/getPlayerWallet', function(req, res) {
 });
 app.post('/getPlayerEmail', (req, res) => {
   // Accédez à la valeur de l'email dans le corps de la requête
-  const email = req.body.email;
+  userEmail = req.body.email;
 
   // Utilisez l'email pour vos traitements
   // Par exemple, vous pouvez l'utiliser pour certaines requêtes
