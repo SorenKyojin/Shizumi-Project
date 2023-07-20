@@ -1,3 +1,5 @@
+const express = require('express');
+
 fetch('/getPlayerWallet') // Assurez-vous d'utiliser le bon chemin d'accès correspondant à votre serveur
   .then(function(response) {
     return response.json();
