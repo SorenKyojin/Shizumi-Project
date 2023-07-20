@@ -1,9 +1,11 @@
+// * On va avoir besoin de Express.js pour certaines manipulations
 const express = require('express'); // Importe le module Express
-
 const app = express(); // Crée une instance d'application Express
 
 app.listen(3000, () => { console.log('Serveur démarré sur le port 3000'); });
 
+// ? Ceci est une route, crée par Express.js Celle-ci permet de créer des "page" ou des "sous-page" en Node.js côté serveur comme on peut le faire en PHP
+// Cette route permet simplement d'arrêter le serveur, et sera enlevé plus tard
 app.get('/shutdown', (req, res) => {
     // Logique d'arrêt du serveur
     console.log('Arrêt du serveur...');
@@ -12,22 +14,21 @@ app.get('/shutdown', (req, res) => {
       process.exit(0);
     });
 });
+
+// Cette route va permettre d'envoyer la donnée que l'on cherche dans le JSON du joueur stocké dans le server vers son client pour retourner la valeur
+// C'est comme ça que l'on peut afficher le montant d'un porte-monnaie virtuel, comme le porte-monnaie Steam par exemple.
 app.get('/getPlayerWallet', function(req, res) {
   // ? Ici, on veut récupérer la valeur du porte-monnaie du joueur. D'abord, il faut trouver son UUID.
-  fetch('/database/players/')
+  fetch('/database/players/' + userId + '.json')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
-    // Ici, "data" contient le nombre de fichiers JSON
-    console.log('Nombre de fichiers JSON:', data.nombreFichiers);
+    OkaneWallet = data.playerwallet;
   })
   .catch(function(error) {
     console.log('Une erreur s\'est produite :', error);
   });
-
-
-
   getPlayerWallet();
   // Une fois que getPlayerWallet() a terminé son exécution et que la variable OkaneWallet a été mise à jour, vous pouvez envoyer la réponse contenant la valeur d'OkaneWallet
   res.json({ OkaneWallet: OkaneWallet });
@@ -44,6 +45,7 @@ app.post('/getPlayerEmail', (req, res) => {
   res.send('Email reçu avec succès !');
 });
 
+// * Connexion à la base de données
 const fs = require('fs');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -59,6 +61,7 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données établie !');
 });
+
 function getUserId() {
   connection.query('SELECT id FROM users WHERE email = ?', email, (err, results) => {
   if (err) {
@@ -77,13 +80,10 @@ function getPlayerData() {
   const playerData = fs.readFileSync('database/players/' + userId + '.json');
   const player = JSON.parse(playerData);
 }
-
-// Pour obtenir la valeur de "rolls" du joueur
-const rolls = player.rolls;
-
-
-connection.end();
-
+function getPlayerRolls() {
+  // Pour obtenir la valeur de "rolls" du joueur
+  const rolls = player.rolls;
+}
 function selectChar() {
   fs.readdir(baseCharacterPath, (err, charFiles) => {
     if (err) {
@@ -122,7 +122,4 @@ function selectChar() {
           console.log('Une erreur s\'est produite : ' + error.message);
       });
   });
-}
-function getPlayerWallet() {
-
 }
