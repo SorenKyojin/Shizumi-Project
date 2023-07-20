@@ -73,8 +73,10 @@ function getUserId() {
   }
 });
 }
-const playerData = fs.readFileSync('database/players/' + userId + '.json');
-const player = JSON.parse(playerData);
+function getPlayerData() {
+  const playerData = fs.readFileSync('database/players/' + userId + '.json');
+  const player = JSON.parse(playerData);
+}
 
 // Pour obtenir la valeur de "rolls" du joueur
 const rolls = player.rolls;
