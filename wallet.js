@@ -5,6 +5,8 @@ fetch('/getPlayerWallet') // Assurez-vous d'utiliser le bon chemin d'accès corr
     return response.json();
   })
   .then(function(data) {
+    getUserId();
+    getPlayerData();
     var okaneWalletValue = data.OkaneWallet;
     // Utilisez la valeur de okaneWalletValue pour l'afficher ou effectuer d'autres opérations côté client
   })
