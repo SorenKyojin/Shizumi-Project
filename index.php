@@ -51,7 +51,7 @@
                 <label>Nom d'utilisateur</label>
                 <div class="id-tooltip">
                     <input type="text" name="username" id="username" class="field" pattern="\w{3,16}" required>
-                    <span class="id-tooltiptext">Indiquez un nom d'utilisateur unique. Celui-ci doit contenir minimum 3 caractères et maximum 16 caractères.</span>
+                    <span class="id-tooltiptext">Le nom d'utilisateur doit contenir minimum 3 caractères et maximum 16 caractères.</span>
                 </div>
                 <label>Mot de passe</label>
                 <div class="password-tooltip">
