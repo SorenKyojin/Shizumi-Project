@@ -5,8 +5,6 @@ if(isset($_POST['disconnect'])) {
     session_destroy();
     header("Location: index.php");
 }
-// if(isset($_FILES['profile-pic-file'])){}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +19,7 @@ if(isset($_POST['disconnect'])) {
     <script src="popup.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Profil et Préférences - Shizumi</title>
+    <title>Profil - Shizumi</title>
 </head>
 <body>
     <header class="global-header">
@@ -32,14 +30,14 @@ if(isset($_POST['disconnect'])) {
             </div>
             <div>
                 <p class="page-desc">
-                    Modifiez votre profil, et ajustez vos préférences.
+                    Vous retrouverez ici les informations sur votre profil et sa confidentialité.
                 </p>
                 <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
             </div>
         </div>
         <div class="header-right">
             <div>
-                <p class="page-name">Profil et Préférences</p>
+                <p class="page-name">Profil</p>
                 <p class="page-level">UID: <?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -97,7 +95,7 @@ if(isset($_POST['disconnect'])) {
                             $default_pfp = $result['default_profile_picture'];
                             echo $default_pfp;
                         } else {
-                            echo "Indiquez votre nom d'utilisateur";
+                            echo "Il y a une erreur dans votre profil.";
                         }
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
@@ -108,9 +106,39 @@ if(isset($_POST['disconnect'])) {
     <main id="profile-container">
         <div class="box profile-box">
             <div class="profile-left">
-                <form>
-                    <label for="change-username">Nom d'utilisateur</label>
-                    <input type="text" name="username" id="change-username" class="field" placeholder="
+                <div><img src="img/default_profile_pics/
+                    <?php
+                        try {
+                            $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+                            $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        } catch (PDOException $err) {
+                            echo "Erreur de connexion à la base de données : " . $err->getMessage();
+                        }
+                        $email = $_SESSION['email'];
+                        try {
+                            // Prépare la requête SQL en utilisant un paramètre nommé :email
+                            $sql = "SELECT default_profile_picture FROM users WHERE email = :email";
+    
+                            // Prépare la requête avec PDO
+                            $query = $conn->prepare($sql);
+    
+                            // Exécute la requête en liant la valeur de l'e-mail
+                            $query->execute(['email' => $email]);
+    
+                            // Récupère le résultat de la requête
+                            $result = $query->fetch();
+                            if ($result) {
+                                $default_pfp = $result['default_profile_picture'];
+                                echo $default_pfp;
+                            } else {
+                                echo "Indiquez votre nom d'utilisateur";
+                            }
+                        } catch (PDOException $err) {
+                            echo "Erreur : " . $err->getMessage();
+                        }
+                    ?>"
+                    alt="Photo de profil par défaut" class="profile-pic-big"></div>
+                <h4>
                     <?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -140,88 +168,14 @@ if(isset($_POST['disconnect'])) {
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
                     }
-                    ?>">
-                    <label for="change-first-name">Prénom</label>
-                    <input type="text" name="first-name" id="change-first-name" class="field">
-                    <label for="change-email">Email</label>
-                    <input type="email" name="email" id="change-email" class="field">
-                    <div class="switch-group">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                        <p>Autoriser les personnages issus de contenus pour adultes</p>
-                    </div>
-                    <div class="switch-group">
-                        <label class="switch">
-                            <input type="checkbox" checked>
-                            <span class="slider round"></span>
-                        </label>
-                        <p>Waifus / Personnages féminins</p>
-                    </div>
-                    <div class="switch-group">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                        <p>Husbandos / Personnages masculins</p>
-                    </div>
-                    <div class="switch-group">
-                        <label class="switch">
-                            <input type="checkbox" checked>
-                            <span class="slider round"></span>
-                        </label>
-                        <p>Célébrités et personnes réelles</p>
-                    </div>
-                    <div class="switch-group">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                        <p>Utiliser ma photo à la place du logo Shizumi pour le menu</p>
-                    </div>
-                </form>
+                    ?>
+                </h4>
             </div>
             <div class="profile-right">
-                <h4>Photo de profil</h4>
-                <div id="flex-profile-right">
-                    <div><img src="img/default_profile_pics/<?php
-                    try {
-                        $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
-                        $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    } catch (PDOException $err) {
-                        echo "Erreur de connexion à la base de données : " . $err->getMessage();
-                    }
-                    $email = $_SESSION['email'];
-                    try {
-                        // Prépare la requête SQL en utilisant un paramètre nommé :email
-                        $sql = "SELECT default_profile_picture FROM users WHERE email = :email";
-
-                        // Prépare la requête avec PDO
-                        $query = $conn->prepare($sql);
-
-                        // Exécute la requête en liant la valeur de l'e-mail
-                        $query->execute(['email' => $email]);
-
-                        // Récupère le résultat de la requête
-                        $result = $query->fetch();
-                        if ($result) {
-                            $default_pfp = $result['default_profile_picture'];
-                            echo $default_pfp;
-                        } else {
-                            echo "Indiquez votre nom d'utilisateur";
-                        }
-                    } catch (PDOException $err) {
-                        echo "Erreur : " . $err->getMessage();
-                    }
-                    ?>" alt="Photo de profil par défaut" class="profile-pic-big"></div>
-                    <div class="box-light change-profile-picture" style="margin-bottom: 15px;">
-                        <p style="margin: 15px;">Le changement de photo de profil n'est pas encore disponible.</p>
-                    </div>
-                </div>
-                <div class="flex-profile-buttons">
-                    <button class="disable-list">Désactiver une série</button>
-
+                <div class="center-top">
+                    <a href="settings.php">
+                        <button class="yellow-button">Préférences</button>
+                    </a>
                     <!-- Déconnexion -->
                     <form method="post">
                         <input type="submit" class="disconnect" name="disconnect" value="Déconnexion"></input>
