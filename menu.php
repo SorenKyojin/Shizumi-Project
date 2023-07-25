@@ -116,9 +116,9 @@ session_start();
             ?>
         </div>
     </main>
-    <div class="box-light mob-dev-window">
-        <p>Cette fonctionnalité est expérimentale. Celle-ci est sujette à modifications, et ne représente qu'un prototype de ce qui sortira au final.</p>
-        <a href="dev-menu.html">Menu Développeur</a>
+    <div class="box-light box-padding-30"> <!-- Boîte d'astuces -->
+        <!--  -->
+        <p></p>
     </div>
 </body>
 </html>
