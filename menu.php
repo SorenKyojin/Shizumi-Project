@@ -20,7 +20,7 @@ session_start();
         <img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-medium" onclick="history.back()">
     </header>
     <main id="mobile-menu">
-        <div id="mob-menu-line-top">
+        <div id="mob-menu-line">
             <a href="lottery.php" class="mob-menu-button">
                 <img src="img/lottery-icon.png" alt="Loterie">
                 <p class="desktop-only-element remove-margin">Loterie</p>
@@ -34,7 +34,7 @@ session_start();
                 <p class="desktop-only-element remove-margin">Collection</p>
             </a>
         </div>
-        <div id="mob-menu-line-mid">
+        <div id="mob-menu-line">
             <a href="garden.php" class="mob-menu-button">
                 <img src="img/garden-icon.png" alt="Jardin">
                 <p class="desktop-only-element remove-margin">Jardin</p>
@@ -48,7 +48,7 @@ session_start();
                 <p class="desktop-only-element remove-margin">Contact</p>
             </a>
         </div>
-        <div id="mob-menu-line-bot">
+        <div id="mob-menu-line">
             <a href="museum.php" class="mob-menu-button">
                 <img src="img/museum-icon.png" alt="Musée">
                 <p class="desktop-only-element remove-margin">Musée</p>
@@ -84,6 +84,36 @@ session_start();
                     ?>" class="profile-pic-small" alt="Profil">
                 <p class="desktop-only-element remove-margin">Profil</p>
             </a>
+            <?php
+            include_once("database/database.php");
+            $email = $_SESSION['email'];
+            try {
+                // Prépare la requête SQL en utilisant un paramètre nommé :email
+                $sql = "SELECT admin FROM users WHERE email = :email";
+
+                // Prépare la requête avec PDO
+                $query = $conn->prepare($sql);
+
+                // Exécute la requête en liant la valeur de l'e-mail
+                $query->execute(['email' => $email]);
+
+                // Récupère le résultat de la requête
+                $result = $query->fetch();
+                if ($result) {
+                    $adminstate = $result['admin'];
+                    if ($admin === 1) {
+                        echo '
+                        <a href="dev-menu.php" class="mob-menu-button">
+                            <img src="img/museum-icon.png" alt="Menu Développeurs">
+                            <p class="desktop-only-element remove-margin">Développeur</p>
+                        </a>
+                        ';
+                    }
+                }
+            } catch (PDOException $err) {
+                echo "Erreur : " . $err->getMessage();
+            }
+            ?>
         </div>
     </main>
     <div class="box-light mob-dev-window">
