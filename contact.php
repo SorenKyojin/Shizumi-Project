@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,17 @@
     <header class="global-header">
         <div class="header-left">
             <div class="menutooltip">
-                <a href="menu.php"><img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-small"></a>
+                <a href="<?php
+                if (isset($_SESSION["connected"])) {
+                    if ($_SESSION["connected"]) {
+                        echo "menu.php";
+                    } else {
+                        echo "index.php";
+                    }
+                } else {
+                    echo "index.php";
+                }
+                ?>"><img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-small"></a>
                 <span class="menutooltiptext">Cliquez pour ouvrir le menu</span>
             </div>
             <div>
