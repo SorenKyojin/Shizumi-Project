@@ -573,6 +573,10 @@ label{
     background-color: #e9d62f;
     color: #2e2e2e;
 }
+/* Forgot password */
+.forgot-form{
+    padding: 30px;
+}
 
 /*
   _           _   _                  
