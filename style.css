@@ -850,6 +850,9 @@ Il n'y pas non plus de note de bas de page, qui est présent sur l'autre footer
     transform: translate(0px, -4px);
     box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.25);
 }
+.box-padding-30{
+    padding: 30px;
+}
 .swal-modal{
     background-color: #727272;
 }
@@ -1355,7 +1358,7 @@ pas de Wokisme ici hein
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    justify-content: space-around;
 }
 .mob-dev-window{
     width: 800px;
