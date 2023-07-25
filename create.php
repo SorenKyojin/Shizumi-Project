@@ -64,8 +64,9 @@ foreach($_POST as $key => $val){
 $params[':email']=md5(md5($params[":email"]) .strlen($params[':email']));
 $params[':password']=sha1(md5($params[":password"]) .md5($params[':password']));
 
-// On définit une photo de profil par défaut
+// On définit une photo de profil par défaut puis on indique que c'est un joueur, et non un admin
 $params[':default_profile_picture'] = $randomPhoto;
+$params[':admin'] = 0;
 
 include("database/database.php");
 // connexion avec la base de données
