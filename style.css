@@ -1350,13 +1350,13 @@ pas de Wokisme ici hein
     align-items: center;
 }
 
-#mob-menu-line-top{
+#mob-menu-line{
     display: flex;
 }
-#mob-menu-line-mid{
+#mob-menu-line{
     display: flex;
 }
-#mob-menu-line-bot{
+#mob-menu-line{
     display: flex;
 }
 .mob-dev-window{
