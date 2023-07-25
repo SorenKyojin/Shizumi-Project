@@ -20,7 +20,7 @@ session_start();
         <img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-medium" onclick="history.back()">
     </header>
     <main id="mobile-menu">
-        <div id="mob-menu-line">
+        <div class="mob-menu-line">
             <a href="lottery.php" class="mob-menu-button">
                 <img src="img/lottery-icon.png" alt="Loterie">
                 <p class="desktop-only-element remove-margin">Loterie</p>
@@ -34,7 +34,7 @@ session_start();
                 <p class="desktop-only-element remove-margin">Collection</p>
             </a>
         </div>
-        <div id="mob-menu-line">
+        <div class="mob-menu-line">
             <a href="garden.php" class="mob-menu-button">
                 <img src="img/garden-icon.png" alt="Jardin">
                 <p class="desktop-only-element remove-margin">Jardin</p>
@@ -48,7 +48,7 @@ session_start();
                 <p class="desktop-only-element remove-margin">Contact</p>
             </a>
         </div>
-        <div id="mob-menu-line">
+        <div class="mob-menu-line">
             <a href="museum.php" class="mob-menu-button">
                 <img src="img/museum-icon.png" alt="Musée">
                 <p class="desktop-only-element remove-margin">Musée</p>
@@ -101,10 +101,10 @@ session_start();
                 $result = $query->fetch();
                 if ($result) {
                     $adminstate = $result['admin'];
-                    if ($admin === 1) {
+                    if ($adminstate === 1) {
                         echo '
                         <a href="dev-menu.php" class="mob-menu-button">
-                            <img src="img/museum-icon.png" alt="Menu Développeurs">
+                            <img src="img/dev-icon.png" alt="Menu Développeurs">
                             <p class="desktop-only-element remove-margin">Développeur</p>
                         </a>
                         ';
