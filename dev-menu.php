@@ -18,7 +18,7 @@
         <img src="img/shizumi-asaki.png" alt="Shizumi" class="logo-medium" onclick="history.back()">
     </header>
     <main id="mobile-menu">
-        <div id="mob-menu-line-top">
+        <div class="mob-menu-line">
             <a href="#" class="mob-menu-button">
                 <img src="img/characters-icon.png" alt="Personnages">
                 Personnages
@@ -31,8 +31,6 @@
                 <img src="img/hotel-icon.png" alt="Collection">
                 Collection
             </a>
-        </div>
-        <div id="mob-menu-line-mid">
             <a href="garden.html" class="mob-menu-button">
                 <img src="img/garden-icon.png" alt="Plantes">
                 Plantes
