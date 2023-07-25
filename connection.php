@@ -31,6 +31,7 @@
                 <input type="text" name="login" id="login" class="mob-field" required>
                 <label for="log-password">Mot de passe</label>
                 <input type="password" name="log-password" id="log-password" class="mob-field" required>
+                <a href="forgot.php" class="italic"></a>
                 <div class="stay-logged-check">
                     <input type="checkbox" name="stay-logged" id="stay-logged">
                     <p>Rester connecté</p>
@@ -41,7 +42,7 @@
     </main>
     <footer>
         <p>Shizumi by Soren - Shizumi 2023</p>
-        <a href="#">Contactez-nous</a>
+        <a href="contact.php">Contactez-nous</a>
     </footer>
 </body>
 </html>
