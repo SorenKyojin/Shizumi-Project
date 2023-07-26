@@ -105,9 +105,7 @@ session_start();
         <div class="box profile-box">
             <div class="profile-left">
                 <form>
-                    <label for="change-username">Nom d'utilisateur</label>
-                    <input type="text" name="username" id="change-username" class="field" placeholder="
-                    <?php 
+                    <label for="change-username">Nom d'utilisateur: <span><?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
                         $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -136,11 +134,50 @@ session_start();
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
                     }
-                    ?>">
-                    <label for="change-first-name">Prénom</label>
+                    ?></span></label>
+                    <input type="text" name="username" id="change-username" class="field">
+                    <button type="submit"><img></button>
+                </form>
+                <form action="">
+                    <label for="change-first-name">Prénom: <span>
+                        <?php 
+                        try {
+                            $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+                            $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        } catch (PDOException $err) {
+                            echo "Erreur de connexion à la base de données : " . $err->getMessage();
+                        }
+                        $email = $_SESSION['email'];
+                        try {
+                            // Prépare la requête SQL en utilisant un paramètre nommé :email
+                            $sql = "SELECT firstname FROM users WHERE email = :email";
+
+                            // Prépare la requête avec PDO
+                            $query = $conn->prepare($sql);
+
+                            // Exécute la requête en liant la valeur de l'e-mail
+                            $query->execute(['email' => $email]);
+
+                            // Récupère le résultat de la requête
+                            $result = $query->fetch();
+                            if ($result) {
+                                $username = $result['firstname'];
+                                echo $username;
+                            } else {
+                                echo "Indiquez votre prénom";
+                            }
+                        } catch (PDOException $err) {
+                            echo "Erreur : " . $err->getMessage();
+                        }
+                        ?>
+                    </span></label>
                     <input type="text" name="first-name" id="change-first-name" class="field">
+                </form>
+                <form action="">
                     <label for="change-email">Email</label>
                     <input type="email" name="email" id="change-email" class="field">
+                </form>
+                <form action="">
                     <div class="switch-group">
                         <label class="switch">
                             <input type="checkbox">
