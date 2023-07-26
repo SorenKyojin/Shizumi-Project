@@ -853,6 +853,15 @@ Il n'y pas non plus de note de bas de page, qui est présent sur l'autre footer
 .box-padding-30{
     padding: 30px;
 }
+.box-padding-10{
+    padding: 10px;
+}
+.box-padding-15{
+    padding: 15px;
+}
+.box-padding-5{
+    padding: 5px;
+}
 .swal-modal{
     background-color: #727272;
 }
