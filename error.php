@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="popup.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Shizumi - Erreur</title>
+    <title>Erreur - Shizumi</title>
 </head>
 <body>
     
