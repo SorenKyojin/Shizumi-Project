@@ -14,7 +14,7 @@ include("database/database.php");
     <script src="wallet.js"></script>
     <script src="popup.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Shizumi - Mot de passe oublié</title>
+    <title>Mot de passe oublié - Shizumi</title>
 </head>
 <body class="box-padding-30">
     <a href="index.php" class="red-button remove-link-style">Retour</a>
