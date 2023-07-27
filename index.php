@@ -27,8 +27,8 @@
         </div>
     </header>
     <main class="home-page">
-        <a href="connection.html" class="mob-log-button mobile-element">Connexion</a>
-        <a href="register.html" class="mob-reg-button mobile-element">Inscription</a>
+        <a href="login.php" class="mob-log-button mobile-element">Connexion</a>
+        <a href="register.php" class="mob-reg-button mobile-element">Inscription</a>
         <div class="connection-box desktop-only-element">
             <h1 class="log-box-title">Connexion</h1>
             <form name="login-form" action="connect.php" method="post">
