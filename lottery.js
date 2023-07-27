@@ -12,6 +12,7 @@
 // Pour la démonstration, on initialise la variable à 10. À la version finale, cette variable sera initialisé par intervalle, et en fonction du niveau de la loterie
 
 // RemainingRolls = 10;
+getPlayerData();
 RemainingRolls = player.rolls;
 //? Pour tous les éléments où l'on veut afficher le nombre de tirages restants, on met à jour la variable.
 
