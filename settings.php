@@ -221,6 +221,7 @@ session_start();
                         </label>
                         <p>Utiliser ma photo à la place du logo Shizumi pour le menu</p>
                     </div>
+                    <button type="submit" class="green-button"></button>
                 </form>
             </div>
             <div class="profile-right">
