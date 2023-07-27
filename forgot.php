@@ -1,3 +1,7 @@
+<?php 
+include("database/database.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,15 +16,16 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Shizumi - Mot de passe oublié</title>
 </head>
-<body>
-    <main>
-        <div class="box center-all">
+<body class="box-padding-30">
+    <a href="index.php" class="red-button remove-link-style">Retour</a>
+    <main class="center-all">
+        <div class="box box-padding-30">
             <h2>Mot de passe oublié</h2>
             <p>Pour vérifier votre identité vous recevrez un email qui vous permettra de changer le mot de passe.</p>
             <form action="" method="post">
                 <label for="email-forgot">Email</label>
-                <input type="email" name="email-forgot" id="email-forgot">
-                <input type="submit" value="Envoyer">
+                <input type="email" name="email-forgot" id="email-forgot" class="field">
+                <input type="submit" value="Envoyer" class="blue-button">
             </form>
         </div>
     </main>
