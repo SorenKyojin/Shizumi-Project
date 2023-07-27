@@ -93,7 +93,7 @@ session_start();
                             $default_pfp = $result['default_profile_picture'];
                             echo $default_pfp;
                         } else {
-                            echo "Indiquez votre nom d'utilisateur";
+                            echo "Pas de photo de profil";
                         }
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
@@ -129,7 +129,7 @@ session_start();
                             $username = $result['username'];
                             echo $username;
                         } else {
-                            echo "Indiquez votre nom d'utilisateur";
+                            echo "Inconnu";
                         }
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
