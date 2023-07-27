@@ -211,6 +211,22 @@ main{
     background-color: rgb(138, 212, 255);
     color: #00245a;
 }
+.red-button{
+    background-color: #FF6F5B;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition-duration: 0.3s;
+}
+.red-button:hover{
+    cursor: pointer;
+    background-color: #df3924;
+    color: rgb(255, 196, 196);
+}
 .yellow-button{
     color: #ffffff;
     background-color: #F0CC4B;
@@ -275,6 +291,9 @@ Rarities
 }
 .bold2 {
     font-weight: bolder;
+}
+.remove-link-style{
+    text-decoration: none;
 }
 
 /*
