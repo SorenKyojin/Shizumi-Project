@@ -106,8 +106,7 @@ if(isset($_POST['disconnect'])) {
     <main id="profile-container">
         <div class="box profile-box">
             <div class="profile-left">
-                <div><img src="img/default_profile_pics/
-                    <?php
+                <div><img src="img/default_profile_pics/<?php
                         try {
                             $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
                             $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
