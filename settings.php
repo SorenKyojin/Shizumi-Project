@@ -135,8 +135,10 @@ session_start();
                         echo "Erreur : " . $err->getMessage();
                     }
                     ?></span></label>
-                    <input type="text" name="username" id="change-username" class="field">
-                    <button type="submit"><img></button>
+                    <div class="flex-row">
+                        <input type="text" name="username" id="change-username" class="field">
+                        <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
+                    </div>
                 </form>
                 <form action="">
                     <label for="change-first-name">Prénom: <span>
@@ -171,11 +173,17 @@ session_start();
                         }
                         ?>
                     </span></label>
-                    <input type="text" name="first-name" id="change-first-name" class="field">
+                    <div class="flex-row">
+                        <input type="text" name="first-name" id="change-first-name" class="field">
+                        <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
+                    </div>
                 </form>
                 <form action="">
                     <label for="change-email">Email</label>
-                    <input type="email" name="email" id="change-email" class="field">
+                    <div class="flex-row">
+                        <input type="email" name="email" id="change-email" class="field">
+                        <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
+                    </div>
                 </form>
                 <form action="">
                     <div class="switch-group">
