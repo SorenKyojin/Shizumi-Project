@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,10 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Erreur - Shizumi</title>
 </head>
-<body>
-    
+<body class="center-all">
+    <div class="box-light box-padding-30" style="max-width: 700px; max-height: 600px;">
+        <h1>Erreur</h1>
+        <p><?php echo $_SESSION['error'];?></p>
+    </div>
 </body>
 </html>
