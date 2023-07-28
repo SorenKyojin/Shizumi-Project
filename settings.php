@@ -69,6 +69,7 @@ session_start();
                 <!-- We show player's UUID. It can't be modified, and is used to store everything the player owns in a JSON file (and some informations, like the wallet) -->
             </div>
             <!-- Profile picture -->
+            <a href="profile.php">
             <img src="img/default_profile_pics/<?php
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -93,12 +94,12 @@ session_start();
                             $default_pfp = $result['default_profile_picture'];
                             echo $default_pfp;
                         } else {
-                            echo "Pas de photo de profil";
+                            echo "crystal.png";
                         }
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
                     }
-                    ?>" class="profile-pic-medium">
+                    ?>" class="profile-pic-medium"></a>
         </div>
     </header>
     <main id="profile-container">
@@ -221,13 +222,13 @@ session_start();
                         </label>
                         <p>Utiliser ma photo à la place du logo Shizumi pour le menu</p>
                     </div>
-                    <button type="submit" class="green-button">Mettre à jour</button>
+                    <button type="submit" class="green-button box-padding-10">Mettre à jour</button>
                 </form>
             </div>
             <div class="profile-right">
                 <h4>Photo de profil</h4>
                 <div id="flex-profile-right">
-                    <div><img src="img/default_profile_pics/<?php
+                    <div><img src="database/players/picture/<?php
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
                         $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -237,7 +238,7 @@ session_start();
                     $email = $_SESSION['email'];
                     try {
                         // Prepare SQL request with :email parameter
-                        $sql = "SELECT default_profile_picture FROM users WHERE email = :email";
+                        $sql = "SELECT profile_picture FROM users WHERE email = :email";
 
                         // Prepare the request with PDO protocol
                         $query = $conn->prepare($sql);
@@ -248,8 +249,8 @@ session_start();
                         // Get the result of the request
                         $result = $query->fetch();
                         if ($result) {
-                            $default_pfp = $result['default_profile_picture'];
-                            echo $default_pfp;
+                            $profile_pic = $result['profile_picture'];
+                            echo $profile_pic;
                         } else {
                             echo "Indiquez votre nom d'utilisateur";
                         }
@@ -257,8 +258,14 @@ session_start();
                         echo "Erreur : " . $err->getMessage();
                     }
                     ?>" alt="Photo de profil par défaut" class="profile-pic-big"></div>
-                    <div class="box-light change-profile-picture" style="margin-bottom: 15px;">
-                        <p style="margin: 15px;">Le changement de photo de profil n'est pas encore disponible.</p>
+                    <div class="change-profile-picture" style="margin-bottom: 15px;">
+                        <p>Importez une image de 300x300 pixels minimum. La taille recommandée est de 500x500 pixels.</p>
+                        <label for="import-profile-pic" class="import-profile-pic">Importer</label>
+                        <form action="">
+                            <input type="file" name="profile-pic" id="import-profile-pic" accept="image/png, image/jpeg, image/gif" class="hide-input-file">
+                            <button type="submit" name="submit" class="green-button box-padding-10">Mettre à jour</button>
+                            <button type="submit" name="reset" id="reset-profile-pic">Réinitialiser</button>
+                        </form>
                     </div>
                 </div>
                 <div class="flex-profile-buttons">
