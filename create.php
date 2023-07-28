@@ -64,7 +64,7 @@ foreach($_POST as $key => $val){
 $params[':email']=md5(md5($params[":email"]) .strlen($params[':email']));
 $params[':password']=sha1(md5($params[":password"]) .md5($params[':password']));
 
-// On définit une photo de profil par défaut puis on indique que c'est un joueur, et non un admin
+// Define default profile picture, and apply it as a profile picture
 $params[':default_profile_picture'] = $randomPhoto;
 $params[':admin'] = 0;
 
@@ -87,7 +87,7 @@ try {
     echo '<a href="index.php">Retour</a>' . '</div>';
      //  header("location:index.php");
   } else {
-    $sql = 'INSERT INTO users(username, email, password, default_profile_picture) VALUES(:username, :email, :password , :default_profile_picture)';
+    $sql = 'INSERT INTO users(username, email, password, profile_picture, default_profile_picture) VALUES(:username, :email, :password, :default_profile_picture, :default_profile_picture)';
     $qry = $cnn->prepare($sql);
     $qry->execute($params);
     // header('location:login.php?m=inscription');
@@ -99,11 +99,11 @@ try {
 } catch (PDOException $err) {
   $err->getMessage();
   /* dodif */
-  $_SESSION["compte-erreur-sql"] = $err->getMessage();
+  $_SESSION["error"] = $err->getMessage();
   $_SESSION["compte-donnees"]["username"] = $username;
   $_SESSION["compte-donnees"]["email"] = $email;
   $_SESSION["compte-donnees"]["password"] = $password;
-  header("location: index.php");//redirection avec le code HTTP 302
+  header("location: error.php");//redirection avec le code HTTP 302
   exit;
 }
 ?>
