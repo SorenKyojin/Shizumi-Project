@@ -153,6 +153,33 @@ span{
     visibility: visible;
     opacity: 1;
 }
+.profiletooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.profiletooltip .profiletooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 2s;
+}
+  
+.profiletooltip:hover .profiletooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 footer{
     background-color: #575757;
     margin: 0;
