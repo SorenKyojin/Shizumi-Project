@@ -30,7 +30,6 @@ session_start();
                 <p class="page-desc">
                     Modifiez votre profil, et ajustez vos préférences.
                 </p>
-                <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
             </div>
         </div>
         <div class="header-right">
@@ -69,43 +68,44 @@ session_start();
                 <!-- We show player's UUID. It can't be modified, and is used to store everything the player owns in a JSON file (and some informations, like the wallet) -->
             </div>
             <!-- Profile picture -->
-            <a href="profile.php">
-            <img src="img/default_profile_pics/<?php
-                    try {
-                        $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
-                        $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    } catch (PDOException $err) {
-                        echo "Erreur de connexion à la base de données : " . $err->getMessage();
-                    }
-                    $email = $_SESSION['email'];
-                    try {
-                        // Prepare SQL request with :email parameter
-                        $sql = "SELECT default_profile_picture FROM users WHERE email = :email";
-
-                        // Prepare the request with PDO protocol
-                        $query = $conn->prepare($sql);
-
-                        // Execute the request, with the value of email
-                        $query->execute(['email' => $email]);
-
-                        // Get the result of the request
-                        $result = $query->fetch();
-                        if ($result) {
-                            $default_pfp = $result['default_profile_picture'];
-                            echo $default_pfp;
-                        } else {
-                            echo "crystal.png";
+            <div class="profiletooltip">
+                <a href="profile.php">
+                    <img src="img/default_profile_pics/<?php
+                        try {
+                            $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+                            $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        } catch (PDOException $err) {
+                            echo "Erreur de connexion à la base de données : " . $err->getMessage();
                         }
-                    } catch (PDOException $err) {
-                        echo "Erreur : " . $err->getMessage();
-                    }
-                    ?>" class="profile-pic-medium"></a>
+                        $email = $_SESSION['email'];
+                        try {
+                            // Prepare SQL request with :email parameter
+                            $sql = "SELECT default_profile_picture FROM users WHERE email = :email";        
+                            // Prepare the request with PDO protocol
+                            $query = $conn->prepare($sql);      
+                            // Execute the request, with the value of email
+                            $query->execute(['email' => $email]);       
+                            // Get the result of the request
+                            $result = $query->fetch();
+                            if ($result) {
+                                $default_pfp = $result['default_profile_picture'];
+                                echo $default_pfp;
+                            } else {
+                                echo "crystal.png";
+                            }
+                        } catch (PDOException $err) {
+                            echo "Erreur : " . $err->getMessage();
+                        }
+                        ?>" class="profile-pic-medium">
+                </a>
+                <span class="profiletooltiptext">Retour au profil</span>
+            </div>
         </div>
     </header>
     <main id="profile-container">
         <div class="box profile-box">
             <div class="profile-left">
-                <form>
+                <form action="database/profile_update.php" method="get">
                     <label for="change-username">Nom d'utilisateur: <span><?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -137,12 +137,12 @@ session_start();
                     }
                     ?></span></label>
                     <div class="flex-row">
-                        <input type="text" name="username" id="change-username" class="field">
+                        <input type="text" name="username" id="username" class="field">
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="">
-                    <label for="change-first-name">Prénom: <span>
+                <form action="database/profile_update.php">
+                    <label for="first-name">Prénom: <span>
                         <?php 
                         try {
                             $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -175,14 +175,14 @@ session_start();
                         ?>
                     </span></label>
                     <div class="flex-row">
-                        <input type="text" name="first-name" id="change-first-name" class="field">
+                        <input type="text" name="first-name" id="first-name" class="field">
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="">
-                    <label for="change-email">Email</label>
+                <form action="database/profile_update.php">
+                    <label for="email">Email</label>
                     <div class="flex-row">
-                        <input type="email" name="email" id="change-email" class="field">
+                        <input type="email" name="email" id="email" class="field">
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
