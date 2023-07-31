@@ -26,7 +26,7 @@ $erreurs=[];
 // validation du pseudo
 if(preg_match("/^[A-Za-z0-9\x{00c0}-\x{00ff}]{5,20}/", $username)=== 0){
   // ajout de message d'erreur
-  $erreurs["username"]="Le nom d'utilisateur n'est pas valide";
+  $erreurs["username"]="Le nom d'utilisateu n'est pas valide";
 }
 // verification d'email
 if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email)=== 0){
