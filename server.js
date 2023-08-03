@@ -27,7 +27,8 @@ app.post('/getPlayerEmail', (req, res) => {
 });
 // Show a 404 error
 app.all('*', (req, res) => {
-  res.status(404).redirect("error.php");
+  $errorcode = res.status();
+  res.status($errorcode).redirect("error.php?code=" . $errorcode);
 });
 
 function getUserId() {
