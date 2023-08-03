@@ -25,6 +25,11 @@ app.post('/getPlayerEmail', (req, res) => {
   // Répondez à la requête PHP avec une réponse appropriée
   res.send('Email reçu avec succès !');
 });
+// Show a 404 error
+app.all('*', (req, res) => {
+  res.status(404).redirect("error.php");
+});
+
 function getUserId() {
   connection.query('SELECT id FROM users WHERE email = ?', email, (err, results) => {
   if (err) {
