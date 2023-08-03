@@ -19,7 +19,25 @@ session_start();
 <body class="center-all">
     <div class="box-light box-padding-30" style="max-width: 700px; max-height: 600px;">
         <h1>Erreur</h1>
-        <p><?php echo $_SESSION['error'];?></p>
+        <p><?php 
+
+        if (!empty($_SESSION['error'])) {
+            echo $_SESSION['error'];
+        } elseif (isset($_GET['code'])) {
+            $errorcode = $_GET['code']
+            switch ($code) {
+                case 'exp404':
+                    echo "Code: EXP404</p><p>Erreur liée aux routes du serveur Node.js de Shizumi Server";
+                    break;
+                
+                default:
+                    echo "Erreur Inconnue"
+                    break;
+            }
+        }
+        
+        
+        ?></p>
     </div>
 </body>
 </html>
