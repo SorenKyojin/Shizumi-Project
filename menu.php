@@ -119,8 +119,8 @@ session_start();
     <div class="box-light box-padding-30"> <!-- Boîte d'astuces -->
         <!-- Dans le paragraphe devrait s'afficher des astuces aléatoires, écrites en JavaScript
         accompagnée d'une icône liée à l'astuce juste au dessus -->
-        <img src="" alt="">
-        <p></p>
+        <img src="" alt="" id="tip-icon">
+        <p id="tip-text"></p>
     </div>
 </body>
 </html>
