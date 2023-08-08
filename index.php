@@ -36,7 +36,7 @@
                 <input type="text" name="log-username" id="log-username" class="field" required>
                 <label>Mot de passe</label>
                 <input type="password" name="log-password" id="log-password" class="field" required>
-                <!-- <a href="forgot.php" class="italic">Mot de passe oublié</a> -->
+                <p><a href="forgot.php" class="italic">Mot de passe oublié</a></p>
                 <!-- <div class="stay-logged-check">
                     <input type="checkbox" name="stay-logged" id="stay-logged">
                     <p>Rester connecté</p>
