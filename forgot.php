@@ -66,7 +66,7 @@ if (count($_POST) > 0) {
                 if (isset($_SESSION['forgot'])) {
                     unset($_SESSION['forgot']);
                 }
-                header("Location: login.php");
+                header("Location: index.php");
                 die;
             }
             break;
@@ -94,7 +94,29 @@ function send_email($email)
 
     // Send email here
     //mail($mail, 'Website: reset password', 'your code is ' . $code);
-    send_mail($email, 'Password Reset', "Your code is " . $code);
+    send_mail($email, '[ASAKI] Shizumi account password reset', '
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href=\'https://fonts.googleapis.com/css?family=PT Sans\' rel=\'stylesheet\'>
+        <link rel="stylesheet" href="email.css">
+    </head>
+    <body>
+        <table border="0" cellspacing="0" cellpadding="0" role="presentation" width="100%">
+            <tr>
+                <td bgcolor="transparent" style="font-size: 0;">&​nbsp;</td>
+                <td bgcolor="#505050" width="600" class="box">
+                  <h1 style="color: #fff;">Shizumi account</h1>
+                  <p style="color: #fff;">Hi ! It seems you forgot your password ! So, here is your code: <b>' . $code . '</b></p>
+                </td>
+                <td bgcolor="transparent" style="font-size: 0;">&​nbsp;</td>
+            </tr>
+          </table>
+    </body>
+    </html>
+    ');
 }
 
 function save_password($password, $pdo)
@@ -227,7 +249,7 @@ function is_code_correct($code, $pdo)
                  
                     <input type="password" name="pass" placeholder="New password" class="field">
                     <input type="password" name="pass2" placeholder="Retype password" class="field">
-                    <input type="submit" value="Terminer" class="fg-finish box-padding-10">
+                    <input type="submit" value="Terminer" class="fg-finish">
                     <a href="forgot.php" class="fg-retry remove-link-style">Recommencer</a>
                     <div>
                         <a href="index.php">Connexion</a>
