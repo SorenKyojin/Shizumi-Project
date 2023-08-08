@@ -14,6 +14,10 @@ app.get('/shutdown', (req, res) => {
       process.exit(0);
     });
 });
+app.get('/', (req, res) => {
+  console.log('Accès à la route réussie !')
+})
+
 app.post('/getPlayerEmail', (req, res) => {
   // Accédez à la valeur de l'email dans le corps de la requête
   const email = req.body.email;
