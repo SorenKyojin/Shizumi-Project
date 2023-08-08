@@ -72,7 +72,7 @@ if(count($_POST) > 0) {
 function send_email($email) {
     global $con;  
     $expire = time() + (60 * 2);
-    $code = rand(10000,99999);
+    $code = rand(100000,999999);
     $email = addslashes($email);
     $query = "INSERT INTO codes (email,code,expire) VALUE ('$email','$code','$expire')";
     mysqli_query($con,$query);
@@ -104,48 +104,81 @@ function send_email($email) {
     ');
 }
 function save_password($password) {
-    global $con;  
-    
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    global $con;
     $email = addslashes($_SESSION['forgot']['email']);
-    $query = "UPDATE forgot SET pass = '$password' WHERE email = '$email' limit 1";
+    $query = "UPDATE users SET password = ? WHERE email = ? LIMIT 1";
     mysqli_query($con,$query);
+    $stmt = mysqli_prepare($con, $query);
+    if ($stmt) {
+        // On chiffre le mot de passe
+        $hashedPassword = sha1(md5($password) .md5($password));
+        $hashedEmail = md5(md5($email) .strlen($email));
+
+        // On attribue les valeurs aux paramètres STMT
+        mysqli_stmt_bind_param($stmt, "ss", $hashedPassword, $hashedEmail);
+
+        // On exécute la requête
+        mysqli_stmt_execute($stmt);
+
+        // Vérification des erreurs
+        if (mysqli_stmt_affected_rows($stmt) == 1) {
+            echo "Mot de passe mis à jour avec succès.";
+        } else {
+            echo "Erreur lors de la mise à jour du mot de passe.";
+        }
+
+        // Fermer le statement
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Erreur lors de la préparation de la requête.";
+    }
+
 }
 function valid_email($email) {
-    global $con;   
-
-    $email = addslashes($email);
-    $query = "SELECT * FROM forgot  WHERE email = '$email' limit 1";
-    $result =  mysqli_query($con,$query);
-   if($result){
-    if(mysqli_num_rows($result) > 0) 
-    {
-            return true;
-    } 
-   }
-   return false;
+    include_once("database/database.php");
+    $hashedEmail = md5(md5($email) . strlen($email));
+    $sql = 'SELECT * FROM users WHERE email = :email';
+    $qry = $cnn->prepare($sql);
+    $qry->execute([':email' => $hashedEmail]);
+    $user = $qry->fetch();
+    if ($email === $user['email']) {
+        return true;
+    } else {
+        return false;
+    }
 }
 function is_code_correct($code) {
     global $con;
     $code = addslashes($code);
     $expire = time();
     $email = addslashes($_SESSION['forgot']['email']);
-  $query = "SELECT * FROM codes WHERE code = '$code' && email = '$email'  ORDER by id DESC limit 1";
-   $result =  mysqli_query($con,$query);
-   if($result){
-    if(mysqli_num_rows($result) > 0) 
-    {
-        $row = mysqli_fetch_assoc($result);
-        if($row['expire'] > $expire) {
-            return "Code incorrect";
+    $query = "SELECT * FROM codes WHERE code = ? AND email = ? ORDER BY id DESC LIMIT 1";
+    $stmt = mysqli_prepare($con, $query);
+    if ($stmt) {
+        // Attribuer les valeurs aux paramètres
+        mysqli_stmt_bind_param($stmt, "ss", $code, $email);
+
+        // Exécution de la requête préparée
+        mysqli_stmt_execute($stmt);
+
+        // Récupération des résultats
+        $result = mysqli_stmt_get_result($stmt);
+
+        // Utilisation des résultats
+        if ($row = mysqli_fetch_assoc($result)) {
+            if($row['expire'] > $expire) {
+                return "Code incorrect";
+            } else {
+                return "Code expiré, veuillez recommencer.";
+            }
         } else {
-            return "Code expiré, veuillez réessayer";
+            mysqli_stmt_close($stmt);
+            return "Code incorrect";
         }
     } else {
-        return "Code incorrect";
+        echo "Erreur lors de la préparation de la requête.";
     }
-   }
-    return "Code incorrect";
+    
 }
 
  
@@ -160,7 +193,9 @@ function is_code_correct($code) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <link href='https://fonts.googleapis.com/css?family=PT Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Mot de passe oublié - Shizumi</title>
 </head>
 <body>
            <?php 
@@ -178,19 +213,18 @@ function is_code_correct($code) {
                         }
                         ?>
                         </span>     
-                        <input type="email" name="email" placeholder="email"><br>
+                        <input type="email" name="email" placeholder="Email"><br>
                         <br style="clear: both;">
-                        <input type="submit" value="next">
+                        <input type="submit" value="next" class="green-button">
                         <br><br>
                         <div>
-                            <a href="index.php" class="green-button">Connexion</a>
+                            <a href="index.php">Connexion</a>
                         </div>
                     </form>
                 <?php
                     break;
 
                     case 'enter_code':
-                        // code...
                         ?>
                         <form method="post" action="forgot.php?mode=enter_code">
                             <h1>Mot de passe oublié</h1>
@@ -204,7 +238,7 @@ function is_code_correct($code) {
                                 ?>
                             </span>
 
-                            <input type="text" name="code" placeholder="12345"><br>
+                            <input type="text" name="code" placeholder="123456"><br>
                             <br style="clear: both;">
                             <input type="submit" value="Suivant" class="green-button">
                             <a href="forgot.php" class="red-button">
@@ -212,23 +246,21 @@ function is_code_correct($code) {
                             </a>
                             <br><br>
                             <div>
-                                <a href="login.php">Login</a>
+                                <a href="login.php">Connexion</a>
                             </div>
                         </form>
                     <?php
                         break;
 
                     case 'enter_password':
-                        // code...
                         ?>
                         <form method="post" action="forgot.php?mode=enter_password">
                             <h1>Forgot Password</h1>
-                            <h3>Enter New Passsword Below</h3>
+                            <p>Entrez le nouveau mot de passe</p>
                         
                             <span style="font-size: 12px; color:red;">
                                 <?php 
                                 foreach ($error as $err) {
-                                //code...
                                 echo $err . "<br>";
                                 }
                                 ?>
@@ -238,12 +270,12 @@ function is_code_correct($code) {
                             <input type="text" name="pass2" placeholder="Retype password"><br>
                             <br style="clear: both;">
                             <input type="submit" value="next" style="float: right;">
-                            <a href="forgot.php">
-                                <input type="button" value="Start  Over">
+                            <a href="forgot.php" class="yellow-button">
+                                <input type="button" value="Recommencer">
                             </a>
                             <br><br>
                             <div>
-                                <a href="login.php">Login</a>
+                                <a href="index.php" class="green-button">Connexion</a>
                             </div>
                         </form>
                     <?php
