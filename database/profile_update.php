@@ -17,6 +17,15 @@ session_start();
 </head>
 <body>
 <?php 
+if(isset($_GET['edit'])) {
+  if (!empty($_GET['edit'])) {
+    $edit = $_GET['edit'];
+  } else {
+    $_SESSION['error'] = "Une erreur est survenue: L'élément à modifier sur le profil n'est pas défini. Signalez ce problème aux développeurs.";
+    header("Location: ../error.php");
+  }
+  
+}
 if (isset($_GET['username'])) {
     $username= !empty($_GET['username']) ? $_GET['username'] : '';
 
