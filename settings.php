@@ -70,33 +70,36 @@ session_start();
             <!-- Profile picture -->
             <div class="profiletooltip">
                 <a href="profile.php">
-                    <img src="img/default_profile_pics/<?php
-                        try {
-                            $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
-                            $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        } catch (PDOException $err) {
-                            echo "Erreur de connexion à la base de données : " . $err->getMessage();
+                    <img src="database/players/picture/<?php
+                    try {
+                        $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+                        $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    } catch (PDOException $err) {
+                        echo "Erreur de connexion à la base de données : " . $err->getMessage();
+                    }
+                    $email = $_SESSION['email'];
+                    try {
+                        // Prepare SQL request with :email parameter
+                        $sql = "SELECT profile_picture FROM users WHERE email = :email";
+
+                        // Prepare the request with PDO protocol
+                        $query = $conn->prepare($sql);
+
+                        // Execute the request, with the value of email
+                        $query->execute(['email' => $email]);
+
+                        // Get the result of the request
+                        $result = $query->fetch();
+                        if ($result) {
+                            $profile_pic = $result['profile_picture'];
+                            echo $profile_pic;
+                        } else {
+                            echo "Indiquez votre nom d'utilisateur";
                         }
-                        $email = $_SESSION['email'];
-                        try {
-                            // Prepare SQL request with :email parameter
-                            $sql = "SELECT default_profile_picture FROM users WHERE email = :email";        
-                            // Prepare the request with PDO protocol
-                            $query = $conn->prepare($sql);      
-                            // Execute the request, with the value of email
-                            $query->execute(['email' => $email]);       
-                            // Get the result of the request
-                            $result = $query->fetch();
-                            if ($result) {
-                                $default_pfp = $result['default_profile_picture'];
-                                echo $default_pfp;
-                            } else {
-                                echo "crystal.png";
-                            }
-                        } catch (PDOException $err) {
-                            echo "Erreur : " . $err->getMessage();
-                        }
-                        ?>" class="profile-pic-medium">
+                    } catch (PDOException $err) {
+                        echo "Erreur : " . $err->getMessage();
+                    }
+                    ?>" class="profile-pic-medium">
                 </a>
                 <span class="profiletooltiptext">Retour au profil</span>
             </div>
@@ -105,7 +108,7 @@ session_start();
     <main id="profile-container">
         <div class="box profile-box">
             <div class="profile-left">
-                <form action="database/profile_update.php" method="get">
+                <form action="database/profile_update.php?edit=username&" method="get">
                     <label for="change-username">Nom d'utilisateur: <span><?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -141,7 +144,7 @@ session_start();
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="database/profile_update.php">
+                <form action="database/profile_update.php?edit=first-name">
                     <label for="first-name">Prénom: <span>
                         <?php 
                         try {
@@ -179,7 +182,7 @@ session_start();
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="database/profile_update.php">
+                <form action="database/profile_update.php?edit=email">
                     <label for="email">Email</label>
                     <div class="flex-row">
                         <input type="email" name="email" id="email" class="field">
@@ -257,11 +260,11 @@ session_start();
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
                     }
-                    ?>" alt="Photo de profil par défaut" class="profile-pic-big"></div>
+                    ?>" alt="Photo de profil" class="profile-pic-big"></div>
                     <div class="change-profile-picture" style="margin-bottom: 15px;">
                         <p>Importez une image de 300x300 pixels minimum. La taille recommandée est de 500x500 pixels.</p>
-                        <label for="import-profile-pic" class="import-profile-pic">Importer</label>
                         <form action="">
+                            <label for="import-profile-pic" class="import-profile-pic">Importer</label>
                             <input type="file" name="profile-pic" id="import-profile-pic" accept="image/png, image/jpeg, image/gif" class="hide-input-file">
                             <button type="submit" name="submit" class="green-button box-padding-10">Mettre à jour</button>
                             <button type="submit" name="reset" id="reset-profile-pic">Réinitialiser</button>
