@@ -2168,8 +2168,11 @@ pas de Wokisme ici hein
     background-color: #29A8F0;
     border-radius: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 10px;
     border: none;
     transition-duration: 0.5s;
+    font-size: 20px;
+    font-style: italic;
     font-size: 20px;
 }
 .fg-next:hover{
@@ -2184,7 +2187,7 @@ pas de Wokisme ici hein
     color: white;
     font-style: italic;
     font-size: 20px;
-    margin: 15px 0;
+    padding: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     transition-duration: 0.5s;
@@ -2199,14 +2202,13 @@ pas de Wokisme ici hein
     height: 42px;
     width: 100px;
     color: #ffffff;
+    padding: 10px;
     background-color: #F0CC4B;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     border: none;
     font-style: italic;
     font-size: 24px;
-    width: 148px;
-    height: 52px;
     transition-duration: 0.2s;
 }
 .fg-retry:hover{
