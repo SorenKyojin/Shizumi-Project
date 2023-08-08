@@ -1,0 +1,10 @@
+{
+    "name": "Shizumi Asaki",
+    "gender": 2,
+    "serie": "Shizumi",
+    "type": "game",
+    "rarity": 5,
+    "value": 98,
+    "description": "[Exclusivité Shizumi] Voici Shizumi. Elle est mignonne, souriante et prête à tout pour rendre les gens heureux.",
+    "images": ["lady_alyx.png"]
+}
