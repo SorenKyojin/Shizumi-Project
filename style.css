@@ -2151,3 +2151,73 @@ pas de Wokisme ici hein
         display: none;
     }
 }
+/*
+  ______                    _   
+ |  ____|                  | |  
+ | |__ ___  _ __ __ _  ___ | |_ 
+ |  __/ _ \| '__/ _` |/ _ \| __|
+ | | | (_) | | | (_| | (_) | |_ 
+ |_|  \___/|_|  \__, |\___/ \__|
+                 __/ |          
+                |___/           
+@@forgot @@password @@forgotpassword @@forgot-password
+*/
+.fg-next{
+    height: 42px;
+    width: 100px;
+    background-color: #29A8F0;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    transition-duration: 0.5s;
+    font-size: 20px;
+}
+.fg-next:hover{
+    cursor: pointer;
+    background-color: #8cd3fc;
+    color: #005586;
+}
+.fg-finish{
+    height: 42px;
+    width: 100px;
+    background-color: #2ad441;
+    color: white;
+    font-style: italic;
+    font-size: 20px;
+    margin: 15px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    transition-duration: 0.5s;
+    border: none;
+}
+.fg-finish:hover{
+    cursor: pointer;
+    color: #15241b;
+    background-color: #61f475;
+}
+.fg-retry{
+    height: 42px;
+    width: 100px;
+    color: #ffffff;
+    background-color: #F0CC4B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: none;
+    font-style: italic;
+    font-size: 24px;
+    width: 148px;
+    height: 52px;
+    transition-duration: 0.2s;
+}
+.fg-retry:hover{
+    background-color: #fde27f;
+    color: #242424;
+    cursor: pointer;
+}
+.fg-box {
+    max-width: 950px;
+}
+.fg-body{
+    display: flex;
+    justify-content: center;
+}
