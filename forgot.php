@@ -1,5 +1,5 @@
 <?php 
-
+include("database/database.php");
 session_start();
 $error = array();
 
@@ -115,7 +115,7 @@ function save_password($password) {
         $hashedEmail = md5(md5($email) .strlen($email));
 
         // On attribue les valeurs aux paramètres STMT
-        mysqli_stmt_bind_param($stmt, "ss", $hashedPassword, $hashedEmail);
+        mysqli_stmt_bind_param($stmt, "s", $hashedPassword, $hashedEmail);
 
         // On exécute la requête
         mysqli_stmt_execute($stmt);
@@ -135,16 +135,31 @@ function save_password($password) {
 
 }
 function valid_email($email) {
-    include_once("database/database.php");
-    $hashedEmail = md5(md5($email) . strlen($email));
-    $sql = 'SELECT * FROM users WHERE email = :email';
-    $qry = $cnn->prepare($sql);
-    $qry->execute([':email' => $hashedEmail]);
-    $user = $qry->fetch();
-    if ($email === $user['email']) {
-        return true;
+    global $con;
+    
+    $query = "SELECT * FROM forgot WHERE email = ?";
+    $stmt = mysqli_prepare($con, $query);
+    if ($stmt) {
+        $hashedEmail = md5(md5($email) . strlen($email));
+        // Attribuer la valeur au paramètre
+        mysqli_stmt_bind_param($stmt, "s", $hashedEmail);
+
+        // Exécution de la requête préparée
+        mysqli_stmt_execute($stmt);
+
+        // Récupération des résultats
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        // Utilisation des résultats
+        if($row > 0) {
+            return true;
+        } else {
+            // Fermer le statement
+            mysqli_stmt_close($stmt);
+            return false;
+        }
     } else {
-        return false;
+        echo "Erreur lors de la préparation de la requête.";
     }
 }
 function is_code_correct($code) {
@@ -156,7 +171,7 @@ function is_code_correct($code) {
     $stmt = mysqli_prepare($con, $query);
     if ($stmt) {
         // Attribuer les valeurs aux paramètres
-        mysqli_stmt_bind_param($stmt, "ss", $code, $email);
+        mysqli_stmt_bind_param($stmt, "s", $code, $email);
 
         // Exécution de la requête préparée
         mysqli_stmt_execute($stmt);
@@ -197,13 +212,13 @@ function is_code_correct($code) {
     <link rel="stylesheet" href="style.css">
     <title>Mot de passe oublié - Shizumi</title>
 </head>
-<body>
+<body class="fg-body">
            <?php 
             
             switch ($mode) {
                 case 'enter_email':
                     ?>
-                    <form method="post" action="forgot.php?mode=enter_email" class="box-light box-padding-30">
+                    <form method="post" action="forgot.php?mode=enter_email" class="box-light fg-box box-padding-30">
                         <h1>Mot de passe oublié</h1>
                         <p class="italic">Pour vérifier votre identité, un code vous sera envoyé à l'email spécifié.</p>        
                         <span style="font-size: 12px; color:red;">
@@ -213,10 +228,8 @@ function is_code_correct($code) {
                         }
                         ?>
                         </span>     
-                        <input type="email" name="email" placeholder="Email"><br>
-                        <br style="clear: both;">
-                        <input type="submit" value="next" class="green-button">
-                        <br><br>
+                        <input type="email" name="email" placeholder="Email" class="field">
+                        <input type="submit" value="Suivant" class="fg-next box-padding-10">
                         <div>
                             <a href="index.php">Connexion</a>
                         </div>
@@ -226,7 +239,7 @@ function is_code_correct($code) {
 
                     case 'enter_code':
                         ?>
-                        <form method="post" action="forgot.php?mode=enter_code">
+                        <form method="post" action="forgot.php?mode=enter_code" class="box-light fg-box box-padding-30">
                             <h1>Mot de passe oublié</h1>
                             <p>Entrez le code envoyé à <?php echo $_SESSION['forgot']['email']; ?></p>
 
@@ -238,13 +251,11 @@ function is_code_correct($code) {
                                 ?>
                             </span>
 
-                            <input type="text" name="code" placeholder="123456"><br>
-                            <br style="clear: both;">
-                            <input type="submit" value="Suivant" class="green-button">
-                            <a href="forgot.php" class="red-button">
-                                <input type="button" value="Retour">
+                            <input type="text" name="code" placeholder="123456" class="field">
+                            <input type="submit" value="Suivant" class="fg-next box-padding-10">
+                            <a href="forgot.php" class="fg-retry box-padding-10">
+                                <input type="button" value="Recommencer">
                             </a>
-                            <br><br>
                             <div>
                                 <a href="login.php">Connexion</a>
                             </div>
@@ -254,7 +265,7 @@ function is_code_correct($code) {
 
                     case 'enter_password':
                         ?>
-                        <form method="post" action="forgot.php?mode=enter_password">
+                        <form method="post" action="forgot.php?mode=enter_password" class="box-light fg-box box-padding-30">
                             <h1>Forgot Password</h1>
                             <p>Entrez le nouveau mot de passe</p>
                         
@@ -266,16 +277,14 @@ function is_code_correct($code) {
                                 ?>
                             </span>
                          
-                            <input type="text" name="pass" placeholder="New password"><br>
-                            <input type="text" name="pass2" placeholder="Retype password"><br>
-                            <br style="clear: both;">
-                            <input type="submit" value="next" style="float: right;">
-                            <a href="forgot.php" class="yellow-button">
+                            <input type="text" name="pass" placeholder="New password" class="field">
+                            <input type="text" name="pass2" placeholder="Retype password" class="field">
+                            <input type="submit" value="Terminer" class="fg-finish box-padding-10">
+                            <a href="forgot.php" class="fg-retry box-padding-10">
                                 <input type="button" value="Recommencer">
                             </a>
-                            <br><br>
                             <div>
-                                <a href="index.php" class="green-button">Connexion</a>
+                                <a href="index.php" class="fg-finish box-padding-10">Connexion</a>
                             </div>
                         </form>
                     <?php
