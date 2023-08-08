@@ -24,14 +24,13 @@ session_start();
         if (!empty($_SESSION['error'])) {
             echo $_SESSION['error'];
         } elseif (isset($_GET['code'])) {
-            $errorcode = $_GET['code']
+            $errorcode = $_GET['code'];
             switch ($code) {
                 case 'exp404':
                     echo "Code: EXP404</p><p>Erreur liée aux routes du serveur Node.js de Shizumi Server";
                     break;
-                
                 default:
-                    echo "Erreur Inconnue"
+                    echo "Erreur Inconnue";
                     break;
             }
         }
