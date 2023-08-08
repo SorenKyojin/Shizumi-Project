@@ -1,0 +1,28 @@
+/*
+    ___   _____ ___    __ __ ____   ________________
+   /   | / ___//   |  / //_//  _/  / ____/ ___/ ___/
+  / /| | \__ \/ /| | / ,<   / /   / /    \__ \\__ \ 
+ / ___ |___/ / ___ |/ /| |_/ /   / /___ ___/ /__/ / 
+/_/  |_/____/_/  |_/_/ |_/___/   \____//____/____/  
+                                                    
+Here is the style for ASAKI emails for Shizumi.
+This file is a lite version of Shizumi CSS.
+*/
+*{
+    font-family: 'PT Sans', sans-serif;
+    color: white;
+}
+
+.box{
+    background-color: #505050;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 26px;
+    padding: 30px;
+    text-align: center;
+}
+.box-light{
+    background-color: #727272;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 26px;
+    padding: 30px;
+}
