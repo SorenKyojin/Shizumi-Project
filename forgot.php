@@ -76,7 +76,6 @@ if (count($_POST) > 0) {
             break;
     }
 }
-
 function send_email($email)
 {
     global $pdo;
@@ -118,23 +117,21 @@ function send_email($email)
     </html>
     ');
 }
-
 function save_password($password, $pdo)
 {
-    $password = sha1(md5($password) .md5($password));
+    $password = sha1(md5($password) . md5($password));
     $email = addslashes($_SESSION['forgot']['email']);
-
+    $email = md5(md5($email) . strlen($email));
     $query = "UPDATE users SET password = :password WHERE email = :email LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':password', $password);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 }
-
 function valid_email($email, $pdo)
 {
     $email = addslashes($email);
-    $email = md5(md5($email) .strlen($email));
+    $email = md5(md5($email) . strlen($email));
     $query = "SELECT * FROM users WHERE email = :email LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':email', $email);
@@ -142,22 +139,18 @@ function valid_email($email, $pdo)
     if ($stmt->rowCount() > 0) {
         return true;
     }
-
     return false;
 }
-
 function is_code_correct($code, $pdo)
 {
     $code = addslashes($code);
     $expire = time();
     $email = addslashes($_SESSION['forgot']['email']);
-
     $query = "SELECT * FROM codes WHERE code = :code AND email = :email ORDER BY id DESC LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':code', $code);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
-
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row['expire'] > $expire) {
