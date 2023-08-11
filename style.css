@@ -335,6 +335,9 @@ Rarities
 .bold2 {
     font-weight: bolder;
 }
+.italic {
+    font-style: italic;
+}
 .remove-link-style{
     text-decoration: none;
 }
