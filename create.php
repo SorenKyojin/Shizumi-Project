@@ -61,7 +61,7 @@ foreach($_POST as $key => $val){
 }
 
 // Cryptage email et mot de passe
-$params[':email']=md5(md5($params[":email"]) .strlen($params[':email']));
+// $params[':email']=md5(md5($params[":email"]) .strlen($params[':email']));
 $params[':password']=sha1(md5($params[":password"]) .md5($params[':password']));
 
 // Define default profile picture, and apply it as a profile picture
