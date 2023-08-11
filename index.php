@@ -24,9 +24,9 @@
             <div>
                 <h1 class="home-title">Shizumi</h1>
                 <p class="home-desc">Shizumi est un jeu sur navigateur inspiré de Mudae, visant à permettre aux joueurs de collectionner leurs personnages préférés.</p>
-                <div class="box box-padding-30">
-                    <h2 class="italic">Citation:</h2>
-                    <p id="quote"></p>
+                <div class="box box-padding-30" style="margin-left: 50px;">
+                    <h1 class="log-box-title">Citation:</h1>
+                    <p id="quote" class="italic"></p>
                     <p><span id="quote-auth"></span> - <span id="quote-sauce"></span></p>
                 </div>
             </div>
