@@ -22,11 +22,10 @@ if (count($_POST) > 0) {
 
     switch ($mode) {
         case 'enter_email':
-            // Code...
             $email = $_POST['email'];
             // Validate the email
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !valid_email($email, $pdo)) {
-                $error[] = "Please enter a valid email";
+                $error[] = "Adresse email invalide";
             } else {
                 $_SESSION['forgot']['email'] = $email;
                 send_email($email);
@@ -41,7 +40,7 @@ if (count($_POST) > 0) {
             $code = $_POST['code'];
             $result = is_code_correct($code, $pdo);
 
-            if ($result == "the code is correct") {
+            if ($result == "Code valide") {
 
                 $_SESSION['forgot']['code'] = $code;
                 header("Location: forgot.php?mode=enter_password");
@@ -57,7 +56,7 @@ if (count($_POST) > 0) {
             $password2 = $_POST['pass2'];
 
             if ($password !== $password2) {
-                $error[] = "Passwords do not match";
+                $error[] = "Les mots de passes ne correspondent pas.";
             } elseif (!isset($_SESSION['forgot']['email']) || !isset($_SESSION['forgot']['code'])) {
                 header("Location: forgot.php");
                 die;
@@ -121,7 +120,6 @@ function save_password($password, $pdo)
 {
     $password = sha1(md5($password) . md5($password));
     $email = addslashes($_SESSION['forgot']['email']);
-    $email = md5(md5($email) . strlen($email));
     $query = "UPDATE users SET password = :password WHERE email = :email LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':password', $password);
@@ -131,7 +129,6 @@ function save_password($password, $pdo)
 function valid_email($email, $pdo)
 {
     $email = addslashes($email);
-    $email = md5(md5($email) . strlen($email));
     $query = "SELECT * FROM users WHERE email = :email LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':email', $email);
@@ -154,12 +151,12 @@ function is_code_correct($code, $pdo)
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row['expire'] > $expire) {
-            return "the code is correct";
+            return "Code valide";
         } else {
-            return "the code is expired";
+            return "Code expiré, veuillez recommencer.";
         }
     } else {
-        return "the code is incorrect";
+        return "Code incorrect";
     }
 }
 
