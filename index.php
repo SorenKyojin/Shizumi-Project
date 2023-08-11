@@ -10,6 +10,7 @@
     ! Cependant, il n'est pas possible de l'enlever ou le remplacer, sinon la police ne fonctionne plus -->
     <link rel="stylesheet" href="style.css">
     <script src="popup.js"></script>
+    <script src="quote.js" async></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Bienvenue sur Shizumi</title>
 </head>
@@ -23,6 +24,11 @@
             <div>
                 <h1 class="home-title">Shizumi</h1>
                 <p class="home-desc">Shizumi est un jeu sur navigateur inspiré de Mudae, visant à permettre aux joueurs de collectionner leurs personnages préférés.</p>
+                <div class="box box-padding-30">
+                    <h2 class="italic">Citation:</h2>
+                    <p id="quote"></p>
+                    <p><span id="quote-auth"></span> - <span id="quote-sauce"></span></p>
+                </div>
             </div>
         </div>
     </header>
