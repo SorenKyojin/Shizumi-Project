@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = isset($_POST['log-password']) ? $_POST['log-password'] : '';
 
     // Hachage des identifiants pour les comparer avec ceux stockés dans la base de données
-    $hashedEmail = md5(md5($email) . strlen($email));
     $hashedPassword = sha1(md5($password) . md5($password));
 
     // Vérification des identifiants dans la base de données
@@ -22,19 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Requête pour récupérer l'utilisateur correspondant aux identifiants fournis
         $sql = 'SELECT * FROM users WHERE email = :email';
         $qry = $cnn->prepare($sql);
-        $qry->execute([':email' => $hashedEmail]);
+        $qry->execute([':email' => $email]);
         $user = $qry->fetch();
 
         if ($user && $user['password'] === $hashedPassword) {
             // Connexion réussie, enregistrement de l'utilisateur dans la session
             $_SESSION['user'] = $user;
-            $_SESSION['email'] = $hashedEmail;
+            $_SESSION['email'] = $email;
             // Récupérez la valeur de l'email depuis $_SESSION["email"]
             $reqemail = $_SESSION["email"];
 
             // Envoyez la valeur de l'email vers le serveur Node.js
             // Assurez-vous d'adapter l'URL à votre serveur Node.js
-            $url = 'http://localhost/getPlayerEmail';
+            $url = 'http://localhost/projets/shizumi/getPlayerEmail';
             $data = array('email' => $reqemail);
 
             $options = array(
@@ -75,6 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Shizumi - Connexion</title>
 </head>
 <script>
-    userEmail = "<?php echo $hashedEmail ?>";
+    userEmail = "<?php echo $email ?>";
 </script>
 </html>
