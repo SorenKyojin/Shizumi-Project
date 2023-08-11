@@ -118,6 +118,7 @@ function send_email($email)
 }
 function save_password($password, $pdo)
 {
+    global $pdo;
     $password = sha1(md5($password) . md5($password));
     $email = addslashes($_SESSION['forgot']['email']);
     $query = "UPDATE users SET password = :password WHERE email = :email LIMIT 1";
