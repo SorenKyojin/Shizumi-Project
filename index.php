@@ -71,7 +71,7 @@
     </main>
     <footer>
         <p>Shizumi by Soren - Shizumi 2023</p>
-        <a href="contact.php">Contactez-nous</a>
+        <p><a href="contact.php">Contactez-nous</a> • <a href="">Politique de confidentialité</a></p>
     </footer>
 </body>
 </html>
