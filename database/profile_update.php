@@ -146,7 +146,7 @@ if ($edit === 'first-name') {
     $qry = $cnn->prepare($sql);
     $qry->execute($params);
     echo '<script type="text/javascript">
-      swal("Le nom d\'utilisateur a été modifié !", {
+      swal("Le prénom a été modifié !", {
           title: "Succès",
           icon: "success",
           buttons: {
