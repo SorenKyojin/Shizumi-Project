@@ -136,8 +136,41 @@ if(isset($_POST['disconnect'])) {
                             echo "Erreur : " . $err->getMessage();
                         }
                     ?>"
-                    alt="Photo de profil par défaut" class="profile-pic-big"></div>
-                <h4>
+                    alt="Photo de profil par défaut" class="profile-pic-big">
+                </div>
+                <h2>
+                    <?php 
+                        try {
+                            $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+                            $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        } catch (PDOException $err) {
+                            echo "Erreur de connexion à la base de données : " . $err->getMessage();
+                        }
+                        $email = $_SESSION['email'];
+                        try {
+                            // Prépare la requête SQL en utilisant un paramètre nommé :email
+                            $sql = "SELECT firstname FROM users WHERE email = :email";
+
+                            // Prépare la requête avec PDO
+                            $query = $conn->prepare($sql);
+
+                            // Exécute la requête en liant la valeur de l'e-mail
+                            $query->execute(['email' => $email]);
+
+                            // Récupère le résultat de la requête
+                            $result = $query->fetch();
+                            if ($result) {
+                                $firstname = $result['firstname'];
+                                echo $firstname;
+                            } else {
+                                echo "Utilisateur";
+                            }
+                        } catch (PDOException $err) {
+                            echo "Erreur : " . $err->getMessage();
+                        }
+                    ?>
+                </h2>
+                <h4 class="italic">
                     <?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -167,6 +200,10 @@ if(isset($_POST['disconnect'])) {
                     } catch (PDOException $err) {
                         echo "Erreur : " . $err->getMessage();
                     }
+                    ?>
+                    #
+                    <?php
+                        echo $userID;
                     ?>
                 </h4>
             </div>
