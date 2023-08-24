@@ -15,6 +15,8 @@ function send_email($email)
     $stmt->bindParam(':expire', $expire);
     $stmt->execute();
 
+    $_SESSION['code'] = $code;
+
     // Send email here
     //mail($mail, 'Website: reset password', 'your code is ' . $code);
     send_mail($email, '[ASAKI] Shizumi account removal', '
