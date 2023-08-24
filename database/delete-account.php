@@ -55,7 +55,7 @@
         $params[':email'] = $_SESSION['email'];
         $sql = 'DELETE FROM users WHERE email= :email'; // paramètre anonyme
         $qry = $pdo->prepare($sql); // prépare la requête
-        $qry->execute(array($params[':email']));
+        $qry->execute($params[':email']);
         session_destroy();
         echo '
         <img src="../img/shizumi-sad.png" style="border-radius: 10px;"></img>
