@@ -10,7 +10,7 @@
     <script src="menu.js"></script>
     <script src="wallet.js"></script>
     <script src="popup.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Avertissement de suppression du compte - Shizumi</title>
 </head>
@@ -55,7 +55,7 @@
         $params[':email'] = $_SESSION['email'];
         $sql = 'DELETE FROM users WHERE email= :email'; // paramètre anonyme
         $qry = $pdo->prepare($sql); // prépare la requête
-        $qry->execute($params[':email']);
+        $qry->execute($params);
         session_destroy();
         echo '
         <img src="../img/shizumi-sad.png" style="border-radius: 10px;"></img>
