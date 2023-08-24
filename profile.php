@@ -208,7 +208,7 @@ if(isset($_POST['disconnect'])) {
                 </h4>
             </div>
             <div class="profile-right">
-                <div class="center-top">
+                <div class="center-top flex-column">
                     <a href="settings.php">
                         <button class="yellow-button">Préférences</button>
                     </a>
