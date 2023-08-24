@@ -274,6 +274,7 @@ session_start();
                 </div>
                 <div class="flex-profile-buttons">
                     <button class="disable-list">Désactiver une série</button>
+                    <a href="delete-warning.php" class="red-button remove-link-style italic">Supprimer le compte</a>
                 </div>
             </div>
         </div>
