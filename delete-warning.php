@@ -33,10 +33,10 @@
             <li>Plantes et engrais</li>
         </ul>
         <p class="danger-text1 danger-text-glow">Toutes ces données seront supprimées définitivement et seront irrécupérables.</p>
-        <p>Pour vérifié votre identité, nous vous enverrons un code par email que vous collerez dans le formulaire suivant.</p>
+        <p>Pour vérifier votre identité, nous vous enverrons un code par email que vous collerez dans le formulaire suivant.</p>
         <div class="flex-row center-all">
             <a href="settings.php" class="blue-button remove-link-style" style="margin-right: 50px;">Annuler</a>
-            <a href="#" class="red-button remove-link-style" style="margin-left: 50px;">Continuer</a>
+            <a href="delete.php" class="red-button remove-link-style" style="margin-left: 50px;">Continuer</a>
         </div>
         
     </div>
