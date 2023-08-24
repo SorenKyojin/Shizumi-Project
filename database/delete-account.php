@@ -16,7 +16,17 @@
 </head>
 <body class="flex-column">
     <?php
-    require("database.php");
+    session_start();
+    include("database.php");
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=shizumi", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $err) {
+        $_SESSION["error"] = $err->getMessage();
+        header("Location: ../error.php");
+    }
+
+    $code = $_SESSION['code'];
     function is_code_correct($code, $pdo)
     {
         $code = addslashes($code);
@@ -44,7 +54,7 @@
     if ($result == "Code valide") {
         $params[':email'] = $_SESSION['email'];
         $sql = 'DELETE FROM users WHERE email= :email'; // paramètre anonyme
-        $qry = $cnn->prepare($sql); // prépare la requête
+        $qry = $pdo->prepare($sql); // prépare la requête
         $qry->execute(array($params[':email']));
         session_destroy();
         echo '
