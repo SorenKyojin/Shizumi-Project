@@ -1,6 +1,7 @@
 <?php
+session_start();
 $email = $_SESSION['email'];
-function send_email($email)
+function send_reg_email($email)
 {
     global $pdo;
     $email = addslashes($email);
