@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Avertissement de suppression du compte - Shizumi</title>
 </head>
-<body class="flex-column">
+<body class="body-bye">
     <?php
     session_start();
     include("database.php");
@@ -58,7 +58,7 @@
         $qry->execute($params);
         session_destroy();
         echo '
-        <img src="../img/shizumi-sad.png" style="border-radius: 10px;"></img>
+        <img src="../img/shizumi-sad.png" style="border-radius: 10px;" class="img-bye desktop-only-element"></img>
         <div class="box-light box-padding-30 big-message2">
             <h1>Au revoir</h1>
             <p>Nous vous remercions d\'avoir utilisé Shizumi.</p>
