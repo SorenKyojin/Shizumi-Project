@@ -1028,6 +1028,12 @@ Il n'y pas non plus de note de bas de page, qui est présent sur l'autre footer
     background-color: #0fc55b;
     cursor: pointer;
 }
+.swal-icon--success:after, .swal-icon--success::before {
+    background: #727272;
+}
+.swal-icon--success__hide-corners {
+    background: #727272;
+}
 .box-rarity-leg{
     margin-bottom: 20px;
     color: gold;
@@ -2301,4 +2307,17 @@ pas de Wokisme ici hein
 .fg-body{
     display: flex;
     justify-content: center;
+}
+.body-bye{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.img-bye{
+    border-radius: 15px;
+    visibility: visible;
+    min-width: 360px;
+    max-width: max-content;
+    max-height: max-content;
 }
