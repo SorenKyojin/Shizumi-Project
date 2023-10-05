@@ -190,7 +190,7 @@ function is_code_correct($code, $pdo)
                     echo $err . "<br>";
                 }
                 ?>
-                </span>     
+                </span>
                 <input type="email" name="email" placeholder="Email" class="field">
                 <input type="submit" value="Suivant" class="fg-next">
                 <div>

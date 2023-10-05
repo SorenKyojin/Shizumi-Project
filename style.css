@@ -229,11 +229,27 @@ main{
     font-size: 18px;
     padding: 10px 25px;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition-duration: 0.3s;
 }
 .blue-button:hover{
+    cursor: pointer;
+    background-color: rgb(138, 212, 255);
+    color: #00245a;
+}
+.blue-button-round{
+    background-color: #29A8F0;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition-duration: 0.3s;
+}
+.blue-button-round:hover{
     cursor: pointer;
     background-color: rgb(138, 212, 255);
     color: #00245a;
@@ -245,11 +261,27 @@ main{
     font-size: 18px;
     padding: 10px 25px;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition-duration: 0.3s;
 }
 .red-button:hover{
+    cursor: pointer;
+    background-color: #df3924;
+    color: rgb(255, 196, 196);
+}
+.red-button-round{
+    background-color: #FF6F5B;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition-duration: 0.3s;
+}
+.red-button-round:hover{
     cursor: pointer;
     background-color: #df3924;
     color: rgb(255, 196, 196);
@@ -315,13 +347,24 @@ Rarities
     width: 50%;
 }
 .center-all{
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-.center-top{
+.center-items{
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+.center-top{
+    display: flex;
+    justify-content: center;
     text-align: center;
+}
+.center-top-notxt{
+    display: flex;
+    justify-content: center;
 }
 .remove-margin{
     margin: 0;
@@ -352,6 +395,31 @@ Rarities
 .compact-button-40{
     width: 40px;
     height: 40px;
+}
+.danger-text1{
+    color: rgb(215, 0, 0);
+}
+.danger-text2{
+    font-weight: bold;
+    color: rgb(215, 0, 0);
+}
+.danger-text-glow{
+    transition-duration: 0.2s;
+}
+.danger-text-glow:hover{
+    text-shadow: 0px 0px 25px rgb(255, 67, 67);
+}
+.flex-around{
+    display: flex;
+    justify-content: space-around;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+}
+.flex-evenly{
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /*
@@ -960,6 +1028,12 @@ Il n'y pas non plus de note de bas de page, qui est présent sur l'autre footer
     background-color: #0fc55b;
     cursor: pointer;
 }
+.swal-icon--success:after, .swal-icon--success::before {
+    background: #727272;
+}
+.swal-icon--success__hide-corners {
+    background: #727272;
+}
 .box-rarity-leg{
     margin-bottom: 20px;
     color: gold;
@@ -980,6 +1054,11 @@ Il n'y pas non plus de note de bas de page, qui est présent sur l'autre footer
     flex-direction: column;
     padding: 50px;
     text-align: center;
+}
+.big-message2{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
 }
 .big-popup {
     display: none;
@@ -1687,6 +1766,9 @@ pas de Wokisme ici hein
     z-index: -1;
     top: -1000px;
 }
+.delete-warning{
+    max-width: 900px;
+}
 
 /*
    _____            _             _   
@@ -2225,4 +2307,17 @@ pas de Wokisme ici hein
 .fg-body{
     display: flex;
     justify-content: center;
+}
+.body-bye{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.img-bye{
+    border-radius: 15px;
+    visibility: visible;
+    min-width: 360px;
+    max-width: max-content;
+    max-height: max-content;
 }

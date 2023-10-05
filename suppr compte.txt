@@ -1,0 +1,35 @@
+Pour la suppression de compte, il y a plusieurs possibilités pour le faire:
+
+  ? Bouton simple
+
+! Sécurité---
+* Facilité+++
+! Erreur+++
+
+Le bouton Supprimer le compte supprimerait le compte directement.
+! Non envisageable, trop dangereux, même en cas d'erreur.
+
+  ? Bouton avec comfirmation
+! Sécurité---
+* Facilité+++
+* Erreur-
+
+Simple amélioration du bouton simple affichant un message de confirmation pour éviter les erreurs, pose également un problème de sécurité.
+! Non envisageable, en cas de compte piraté, le compte serait définitivement perdu.
+
+  ? Formulaire de confirmation avec email
+! Sécurité-
+* Facilité++
+* Erreur--
+
+Une confirmation exigeant l'email de l'utilisateur. Peut poser tout de même un problème de sécurité en cas de piratage.
+Envisageable, mais ce n'est pas le plus optimisé.
+? Solution de dernier recours
+
+  ? Formulaire de confirmation à double facteur
+* Sécurité++
+! Facilité-
+* Erreur---
+
+Envoie un code par email à coller dans un formulaire. Si le code est validé, le compte sera supprimé.
+Envisageable. Sécurisé, même en cas de piratage, tant que le pirate n'a pas accès à l'email, il ne peut pas supprimer le compte.

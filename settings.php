@@ -58,6 +58,7 @@ session_start();
                         if ($result) {
                             $userID = $result['id'];
                             echo $userID;
+                            $_SESSION['useruniqueid'] = $userID;
                         } else {
                             echo "0";
                         }
@@ -108,7 +109,7 @@ session_start();
     <main id="profile-container">
         <div class="box profile-box">
             <div class="profile-left">
-                <form action="database/profile_update.php?edit=username&" method="get">
+                <form action="database/profile_update.php" method="post">
                     <label for="change-username">Nom d'utilisateur: <span><?php 
                     try {
                         $cnn = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
@@ -144,7 +145,7 @@ session_start();
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="database/profile_update.php?edit=first-name">
+                <form action="database/profile_update.php" method="post">
                     <label for="first-name">Prénom: <span>
                         <?php 
                         try {
@@ -182,7 +183,7 @@ session_start();
                         <button type="submit" class="green-button compact-button-40 center-all" style="margin-left: 15px;margin-top: 10px;"><img src="img/save-icon.png" class="icon-32"></button>
                     </div>
                 </form>
-                <form action="database/profile_update.php?edit=email">
+                <form action="database/profile_update.php" method="post">
                     <label for="email">Email</label>
                     <div class="flex-row">
                         <input type="email" name="email" id="email" class="field">
@@ -273,6 +274,7 @@ session_start();
                 </div>
                 <div class="flex-profile-buttons">
                     <button class="disable-list">Désactiver une série</button>
+                    <a href="delete-warning.php" class="red-button remove-link-style italic">Supprimer le compte</a>
                 </div>
             </div>
         </div>
