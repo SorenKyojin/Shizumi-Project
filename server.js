@@ -1,10 +1,24 @@
 // * On va avoir besoin de Express.js pour certaines manipulations
 const express = require('express'); // Importe le module Express
-const app = express(); // Crée une instance d'application Express
+const { createServer } = require('node:http'); // Importe le protocole HTTP pour le serveur
+const { join } = require('node:path');
 
+// ? Nouvelle méthode ES Module. Cette méthode est nouvelle mais pas suffisamment populaire
+// import express from 'express'; // Importe le module Express
+// import { createServer } from 'node:http'; // Importe le protocole HTTP pour le serveur
+
+
+const app = express(); // Crée une instance d'application Express
+const server = createServer(app); // Utilise le protocole node:http en créant le serveur
+
+
+// * On démarre le server sur le port 3000
 app.listen(3000, () => { console.log('Serveur démarré sur le port 3000'); });
 
 // ? Ceci est une route, crée par Express.js Celle-ci permet de créer des "page" ou des "sous-page" en Node.js côté serveur comme on peut le faire en PHP
+// ? Ainsi, c'est en utilisant un code JS dans une page que l'on peut envoyer des informations à Node.JS.
+// ? L'idée est que chaque intéraction du joueur prend une route vers le serveur Node pour éxécuter cette intéraction côté serveur.
+
 // Cette route permet simplement d'arrêter le serveur, et sera enlevé plus tard
 app.get('/shutdown', (req, res) => {
     // Logique d'arrêt du serveur
@@ -15,6 +29,8 @@ app.get('/shutdown', (req, res) => {
     });
 });
 app.get('/', (req, res) => {
+  res.writeHead(200, { Location: "http://127.0.0.1/projets/shizumi/index.php" });
+  // res.sendFile(join(__dirname, 'index.php'));
   console.log('Accès à la route réussie !')
 })
 
