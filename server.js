@@ -32,7 +32,10 @@ app.get('/', (req, res) => {
   res.writeHead(200, { Location: "http://127.0.0.1/projets/shizumi/index.php" });
   // res.sendFile(join(__dirname, 'index.php'));
   console.log('Accès à la route réussie !')
-})
+});
+app.post('/connect-test', (req, res) => {
+  console.log('Accès à la route via PHP réussie !')
+});
 
 app.post('/getPlayerEmail', (req, res) => {
   // Accédez à la valeur de l'email dans le corps de la requête
