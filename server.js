@@ -33,8 +33,8 @@ app.get('/', (req, res) => {
   // res.sendFile(join(__dirname, 'index.php'));
   console.log('Accès à la route réussie !')
 });
-app.post('/connect-test', (req, res) => {
-  console.log('Accès à la route via PHP réussie !')
+app.get('/connect-test', function(req, res){
+  console.log("Test Réussi !");
 });
 
 app.post('/getPlayerEmail', (req, res) => {
@@ -48,11 +48,12 @@ app.post('/getPlayerEmail', (req, res) => {
   // Répondez à la requête PHP avec une réponse appropriée
   res.send('Email reçu avec succès !');
 });
+
 // Show a 404 error
-app.all('*', (req, res) => {
-  $errorcode = res.status();
-  res.status($errorcode).redirect("error.php?code=" . $errorcode);
-});
+// app.all('*', (req, res) => {
+//   $errorcode = res.status();
+//   res.status($errorcode).redirect("error.php?code=" . $errorcode);
+// });
 
 function getUserId() {
   connection.query('SELECT id FROM users WHERE email = ?', email, (err, results) => {
