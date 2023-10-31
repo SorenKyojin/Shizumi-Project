@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Envoyez la valeur de l'email vers le serveur Node.js
             // Assurez-vous d'adapter l'URL à votre serveur Node.js
-            $url = 'http://localhost/projets/shizumi/getPlayerEmail';
+            $url = 'http://localhost:3000/getPlayerEmail';
             $data = array('email' => $reqemail);
 
             $options = array(
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $context = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
 
+            $_SESSION['connected'] = true;
             header('Location: menu.php'); // Redirection vers la page de tableau de bord après connexion
             exit();
         } else {
