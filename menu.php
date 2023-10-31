@@ -1,15 +1,13 @@
 <?php
 include("database/database.php");
 session_start();
-
 if (isset($_SESSION["connected"])) {
     if ($_SESSION["connected"]) {
         $url = 'http://127.0.0.1:3000/connect-test'; // Assurez-vous d'ajuster l'URL
         $data = array('key' => 'value'); // Vous pouvez envoyer des données avec la requête si nécessaire
-
         $options = array(
           'http' => array(
-            'method' => 'POST',
+            'method' => 'GET',
             'header' => 'Content-type: application/x-www-form-urlencoded',
             'content' => http_build_query($data)
           )
