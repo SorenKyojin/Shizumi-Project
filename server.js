@@ -7,7 +7,6 @@ const { join } = require('node:path');
 // import express from 'express'; // Importe le module Express
 // import { createServer } from 'node:http'; // Importe le protocole HTTP pour le serveur
 
-
 const app = express(); // Crée une instance d'application Express
 const server = createServer(app); // Utilise le protocole node:http en créant le serveur
 
@@ -18,6 +17,10 @@ app.listen(3000, () => { console.log('Serveur démarré sur le port 3000'); });
 // ? Ceci est une route, crée par Express.js Celle-ci permet de créer des "page" ou des "sous-page" en Node.js côté serveur comme on peut le faire en PHP
 // ? Ainsi, c'est en utilisant un code JS dans une page que l'on peut envoyer des informations à Node.JS.
 // ? L'idée est que chaque intéraction du joueur prend une route vers le serveur Node pour éxécuter cette intéraction côté serveur.
+
+// ? On utilise le middleware body-parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Cette route permet simplement d'arrêter le serveur, et sera enlevé plus tard
 app.get('/shutdown', (req, res) => {
