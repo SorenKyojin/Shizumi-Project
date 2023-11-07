@@ -28,11 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Connexion réussie, enregistrement de l'utilisateur dans la session
             $_SESSION['user'] = $user;
             $_SESSION['email'] = $email;
-            // Récupérez la valeur de l'email depuis $_SESSION["email"]
+            // On récupère la valeur de l'email depuis $_SESSION["email"]
             $reqemail = $_SESSION["email"];
 
-            // Envoyez la valeur de l'email vers le serveur Node.js
-            // Assurez-vous d'adapter l'URL à votre serveur Node.js
+            // On envoie la valeur de l'email vers le serveur Node.js
             $url = 'http://localhost:3000/getPlayerEmail';
             $data = array('email' => $reqemail);
 
