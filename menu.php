@@ -1,6 +1,9 @@
 <?php
 include("database/database.php");
 session_start();
+// Solution temporaire de désactivation de l'affichage des avertissements.
+error_reporting(E_ALL & ~E_WARNING);
+
 if (isset($_SESSION["connected"])) {
     if ($_SESSION["connected"]) {
         $url = 'http://127.0.0.1:3000/connect-test'; // Assurez-vous d'ajuster l'URL
