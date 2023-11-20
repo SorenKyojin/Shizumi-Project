@@ -23,7 +23,7 @@
                 <p class="page-desc">
                     Plantez des plantes pour obtenir des bonus supplémentaires. Utilisez des engrais pour améliorer leur efficacités. Améliorez le jardin pour pouvoir planter plus de plantes.
                 </p>
-                <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
+                <!-- <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p> -->
             </div>
         </div>
         <div class="header-right">

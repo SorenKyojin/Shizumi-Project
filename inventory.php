@@ -29,7 +29,7 @@
                     Vous pouvez également gérer vos personnages souhaités.
                     Améliorez l’hôtel pour augmenter le nombre de souhaits maximaux et l’obtention des personnages.
                 </p>
-                <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
+                <!-- <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p> -->
             </div>
         </div>
         <div class="header-right">

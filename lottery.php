@@ -24,7 +24,7 @@
                 <p class="page-desc">C’est ici que vous pouvez obtenir gratuitement des personnages sur Shizumi.
                     Vous avez le droit par défaut à 10 tirages par heure et une obtention de personnage toutes les 2 heures. Vous pouvez repousser ces limites en améliorant les bâtiments correspondants.
                 </p>
-                <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p>
+                <!-- <p class="workinprogress">Cette page est utilisée à des fins expérimentales. Celle-ci sert uniquement à avoir un rendu visuel du site avec le HTML et le CSS.</p> -->
             </div>
         </div>
         <div class="header-right">
