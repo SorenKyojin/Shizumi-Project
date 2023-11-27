@@ -12,11 +12,13 @@
     <script src="popup.js"></script>
     <link rel="stylesheet" href="../style.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Avertissement de suppression du compte - Shizumi</title>
+    <title>Suppression du compte - Shizumi</title>
 </head>
 <body class="body-bye">
     <?php
     session_start();
+
+    // Connexion à la base de données
     include("database.php");
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=shizumi", "root", "");
@@ -27,8 +29,10 @@
     }
 
     $code = $_SESSION['code'];
+
     function is_code_correct($code, $pdo)
     {
+        // Fonction qui véréfie si le code envoyé par email correspond à celui entré dans le formulaire
         $code = addslashes($code);
         $expire = time();
         $email = addslashes($_SESSION['email']);
@@ -49,14 +53,18 @@
         }
     }
 
+    // Récupération du code envoyé dans le formulaire
     $code = $_POST['code'];
     $result = is_code_correct($code, $pdo);
     if ($result == "Code valide") {
+        // Le code est valide
+
         $params[':email'] = $_SESSION['email'];
-        $sql = 'DELETE FROM users WHERE email= :email'; // paramètre anonyme
-        $qry = $pdo->prepare($sql); // prépare la requête
-        $qry->execute($params);
+        $sql = 'DELETE FROM users WHERE email= :email';
+        $qry = $pdo->prepare($sql); // Préparation de la requête
+        $qry->execute($params); // Exécution de la requête avec l'ensemble des paramètres
         session_destroy();
+        // Affichage du popup d'adieu
         echo '
         <img src="../img/shizumi-sad.png" style="border-radius: 10px;" class="img-bye desktop-only-element"></img>
         <div class="box-light box-padding-30 big-message2">
@@ -66,6 +74,7 @@
             <a href="../index.php" class="blue-button remove-link-style">Accueil</a>
         </div>';
     } else {
+        // Le code est invalide, on recommence
         $error[] = "Code invalide";
         header("Location: ../delete.php");
     }
