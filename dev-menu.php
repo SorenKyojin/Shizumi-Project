@@ -27,16 +27,16 @@
                 <img src="img/series-icon.png" alt="Séries">
                 Séries
             </a>
-            <a href="collection.html" class="mob-menu-button">
+            <a href="collection.php" class="mob-menu-button">
                 <img src="img/hotel-icon.png" alt="Collection">
                 Collection
             </a>
-            <a href="garden.html" class="mob-menu-button">
+            <a href="#" class="mob-menu-button">
                 <img src="img/garden-icon.png" alt="Plantes">
                 Plantes
             </a>
-            <a href="contact.html" class="mob-menu-button">
-                <img src="img/contact.png" alt="Objets">
+            <a href="#" class="mob-menu-button">
+                <img src="img/items-icon.png" alt="Objets">
                 Objets
             </a>
             <a href="profile.html" class="mob-menu-button">
@@ -46,7 +46,7 @@
         </div>
     </main>
     <div class="box-light mob-dev-window">
-        <p>Cette fonctionnalité est expérimentale. Celle-ci est sujette à modifications, et ne représente qu'un prototype de ce qui sortira au final.</p>
+        <!-- <p>Cette fonctionnalité est expérimentale. Celle-ci est sujette à modifications, et ne représente qu'un prototype de ce qui sortira au final.</p> -->
         <a href="menu.php">Menu</a>
     </div>
 </body>
