@@ -3,14 +3,14 @@ include("database/database.php");
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupération des valeurs du formulaire
+    //? Récupération des valeurs du formulaire
     $email = isset($_POST['log-username']) ? $_POST['log-username'] : '';
     $password = isset($_POST['log-password']) ? $_POST['log-password'] : '';
 
-    // Hachage des identifiants pour les comparer avec ceux stockés dans la base de données
+    //? Hachage du mot de passe pour le comparer avec celui stocké dans la base de données
     $hashedPassword = sha1(md5($password) . md5($password));
 
-    // Vérification des identifiants dans la base de données
+    //? Vérification des identifiants dans la base de données
     include_once("database/database.php");
     try {
         // Connexion à la base de données
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cnn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $cnn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-        // Requête pour récupérer l'utilisateur correspondant aux identifiants fournis
+        // Requête pour récupérer l'utilisateur correspondant à l'email fourni
         $sql = 'SELECT * FROM users WHERE email = :email';
         $qry = $cnn->prepare($sql);
         $qry->execute([':email' => $email]);
