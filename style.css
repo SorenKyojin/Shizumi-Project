@@ -421,6 +421,9 @@ Rarities
     display: flex;
     justify-content: space-evenly;
 }
+.small-space-around{
+    margin: 15px;
+}
 
 /*
   _    _                      
@@ -448,6 +451,13 @@ Rarities
 .home-page{
     display: flex;
     justify-content: space-around;
+}
+.privacy-main{
+    max-width: 800px;
+}
+.fit-elements-inside{
+    max-width: fit-content;
+    max-height: fit-content;
 }
 
 /*
