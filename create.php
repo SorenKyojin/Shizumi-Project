@@ -20,11 +20,11 @@ include("database/database.php");
 //? Tirage d'une photo de profil aléatoire
 include("default_pfp.php");
 
-//? Initialisation des paramètre PHPMailer, SMTP pour l'envoi de l'email
+//? Initialisation des paramètres PHPMailer et du SMTP pour l'envoi de l'email
 require("mail.php");
 
 
-//? On vérifie si les champs ont été remplis. Si ce n'est oas le cas, on assigne une valeur non définie, qui sera détecté avec les preg_match().
+//? On vérifie si les champs ont été remplis. Si ce n'est pas le cas, on assigne une valeur non définie, qui sera détecté avec les preg_match().
 $username= isset($_POST['username']) ? $_POST['username'] : '';
 $email= isset($_POST['email']) ? $_POST['email'] : '';
 $password= isset($_POST['password']) ? $_POST['password'] : '';
@@ -36,7 +36,7 @@ if(preg_match("/^[A-Za-z0-9\x{00c0}-\x{00ff}]{5,20}/", $username)=== 0){
   $erreurs["username"]="Le nom d'utilisateu n'est pas valide";
   // On ajoute le message d'erreur dans un tableau
 }
-//? Vérification d'email
+//? Vérification de l'email
 if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email)=== 0){
   $erreurs["email"]="Email invalide.";
 }
@@ -73,8 +73,7 @@ foreach($_POST as $key => $val){
   $params[':' . $key] = (isset($_POST[$key]) && !empty($_POST[$key])) ? htmlspecialchars($_POST[$key]) : null;
 }
 
-// Cryptage email et mot de passe
-// $params[':email']=md5(md5($params[":email"]) .strlen($params[':email']));
+// Cryptage du mot de passe
 $params[':password']=sha1(md5($params[":password"]) .md5($params[':password']));
 
 // Définit une photo de profil par défaut aléatoire parmis une dizaine
@@ -120,8 +119,6 @@ try {
           }
         });
       </script>';
-    // echo '<div class="big-message box-light center-all">' . '<p class="bold1">Cette adresse mail existe déjà.</p>';
-    // echo '<a href="index.php">Retour</a>' . '</div>';
   } else {
     $sql = 'INSERT INTO users(username, email, password, profile_picture, default_profile_picture) VALUES(:username, :email, :password, :default_profile_picture, :default_profile_picture)';
     $qry = $cnn->prepare($sql);
@@ -129,7 +126,7 @@ try {
     unset($cnn);
     send_reg_email($email); // Envoie un email pour annoncer le succès de l'inscription.
     echo '<script type="text/javascript">
-      swal("Compte crée avec succès ! Vous pouvez vous connecter !", {
+      swal("Compte créé avec succès ! Vous pouvez vous connecter !", {
           title: "Succès",
           icon: "success",
           buttons: {
@@ -151,9 +148,7 @@ try {
           }
         });
       </script>';
-    // echo '<div class="big-message box-light center-all">' . '<p class="bold1">Votre compte a bien été crée. Vous pouvez vous connecter.</p>';
-    // echo '<p><a href="index.php">Se connecter</a></p>' . '</div>';
-  } 
+  }
 } catch (PDOException $err) {
   $err->getMessage();
   /* dodif */
