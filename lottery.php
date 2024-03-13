@@ -10,6 +10,7 @@
     ! Cependant, il n'est pas possible de l'enlever ou le remplacer, sinon la police ne fonctionne plus -->
     <link rel="stylesheet" href="style.css">
     <script src="popup.js"></script>
+    <script src="lottery.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Loterie - Shizumi</title>
 </head>
