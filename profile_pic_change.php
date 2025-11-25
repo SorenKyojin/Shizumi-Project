@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Vérifie la taille du fichier - 5Mo maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: La taille du fichier est supérieure à la limite autorisée.");
+        if($filesize > $maxsize) die("Erreur: La taille du fichier est supérieure à la limite autorisée.");
 
         // Vérifie le type MIME du fichier
         if(in_array($filetype, $allowed)){
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             
         } else{
-            echo "Erreur: Une erreur s'est produite lors de l'envoi de la miniature.";
+            echo "Erreur: Une erreur s'est produite lors de l'envoi de l'image.";
         }
     } else{
         echo "Erreur: " . $_FILES["profile-pic"]["error"];
