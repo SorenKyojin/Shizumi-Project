@@ -309,6 +309,7 @@ main{
     font-style: italic;
     font-size: 20px;
     margin: 15px 0;
+    padding: 10px 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     transition-duration: 0.5s;
@@ -343,9 +344,21 @@ Rarities
     display: flex;
     flex-direction: column;
 }
+.flex-column-wrap{
+    display: flex;
+    flex-flow: column wrap;
+}
+.user-list{
+    display: flex;
+    flex-direction: column;
+}
 .half-page{
     width: 50%;
 }
+/*
+@@flexbox @@alignments @@center @@display
+*/
+
 .center-all{
     display: flex;
     justify-content: center;
@@ -423,6 +436,19 @@ Rarities
 }
 .small-space-around{
     margin: 15px;
+}
+.flex-around-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+.flex-stretch{
+    display: flex;
+    justify-content: stretch;
 }
 
 /*

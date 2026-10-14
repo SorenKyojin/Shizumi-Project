@@ -1,10 +1,10 @@
 # Shizumi Project
 Shizumi (Code name: Shizumi Project) is a "web game" who let players collecting characters from animes, mangas, games etc like Mudae does in Discord.
-The big difference is everyone can own the same character without limit like Mudae authorize only one owner.
+The big difference is everyone can own the same character without limit like Mudae authorize only one owner and everything works on a website.
 
 The objective of the player will be to collect the most characters or collect their favorites.
 
-DISCLAIMER: Shizumi and Mudae are not affiliated. Shizumi and Mudae have their own supports, if you want something like Shizumi on Discord, Mudae is the best. If you prefer another platform than Discord, Shizumi is simpler.
+DISCLAIMER: Shizumi and Mudae are not affiliated. Shizumi and Mudae have their own supports, if you want something like Shizumi on Discord, Mudae is the best. If you prefer another platform than Discord, Shizumi was made for that.
 
 ## Support
 

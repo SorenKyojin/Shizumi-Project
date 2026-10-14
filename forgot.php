@@ -152,6 +152,11 @@ function is_code_correct($code, $pdo)
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row['expire'] > $expire) {
+            // Delete the code from the database corresponding to the email
+            $deleteQuery = "DELETE FROM codes WHERE email = :email";
+            $deleteStmt = $pdo->prepare($deleteQuery);
+            $deleteStmt->bindParam(':email', $email);
+            $deleteStmt->execute();
             return "Code valide";
         } else {
             return "Code expiré, veuillez recommencer.";

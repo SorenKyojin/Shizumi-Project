@@ -39,6 +39,10 @@
                 <img src="img/items-icon.png" alt="Objets">
                 Objets
             </a>
+            <a href="users_list.php" class="mob-menu-button">
+                <img src="img/user-icon.png" alt="Utilisateurs">
+                Utilisateurs
+            </a>
             <a href="profile.html" class="mob-menu-button">
                 <img src="img/exemple-profile-pic.jpg" class="profile-pic-small" alt="">
                 Profil
