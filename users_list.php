@@ -55,7 +55,7 @@ include("database/database.php");
                         echo '</div>';
                         echo '<div class="center-all flex-end">';
                             echo '<a href="view_user.php?id=' . $row['id'] . '" class="green-button remove-link-style small-space-around">Voir Inventaire</a>';
-                            echo '<a href="disable_user.php?id=' . $row['id'] . '" class="red-button remove-link-style small-space-around">Désactiver</a>';
+                            echo '<a href="disable_user.php?id=' . $row['id'] . '" class="red-button remove-link-style small-space-around">Désactivation</a>';
                             echo '<a href="reset_cooldown.php?id=' . $row['id'] . '" class="blue-button remove-link-style small-space-around">Réinitialiser Cooldown</a>';
                         echo '</div>';
                     echo '</div>';
